@@ -1,0 +1,83 @@
+{
+  "started_at": "2026-10-04T19:33:46+00:00",
+  "status": "failed",
+  "steps": {
+    "parse": {
+      "program": "Season 9 Grants Council / Season 9 Governance Fund Missions",
+      "kind": "grant",
+      "tracks": 2,
+      "criteria": 4
+    },
+    "catalog": {
+      "hub": 31,
+      "index": 236,
+      "grokhack": 99,
+      "starters": 14,
+      "errors": {}
+    },
+    "plan": {
+      "title": "Pair Mission Board",
+      "contract": "PairMissionBoard",
+      "chain": "OP Sepolia",
+      "tracks": [
+        "Grants Council Mission",
+        "Developer Advisory Board Mission"
+      ],
+      "blocks": [
+        "Blockchains/openzeppelin-contracts",
+        "Blockchains/blockchainlab-starters/starters/foundry-oz-tokens",
+        "Blockchains/morpho-blue",
+        "Blockchains/optimism",
+        "Blockchains/chains",
+        "Blockchains/blockchainlab-api",
+        "Blockchains/blockchainlab-labs",
+        "Blockchains/hackathon-entry-template",
+        "Blockchains/blockchainlab-feeds",
+        "Blockchains/forge-std",
+        "Blockchains/buidl"
+      ],
+      "unverified_dropped": []
+    }
+  },
+  "mode": "branch",
+  "elapsed_s": 197,
+  "grok_usage": {
+    "calls": 3,
+    "prompt_tokens": 16111,
+    "completion_tokens": 9295,
+    "usd": 0.1705,
+    "seconds": 193.5,
+    "detail": [
+      {
+        "purpose": "parse-brief",
+        "model": "grok-4.7",
+        "seconds": 22.8,
+        "prompt_tokens": 4677,
+        "completion_tokens": 2045,
+        "reasoning_tokens": 933,
+        "usd": 0.0255
+      },
+      {
+        "purpose": "plan",
+        "model": "grok-4.7",
+        "seconds": 42.0,
+        "prompt_tokens": 8619,
+        "completion_tokens": 2748,
+        "reasoning_tokens": 1255,
+        "usd": 0.0395
+      },
+      {
+        "purpose": "contract",
+        "model": "grok-4.7",
+        "seconds": 128.7,
+        "prompt_tokens": 2815,
+        "completion_tokens": 4502,
+        "reasoning_tokens": 12429,
+        "usd": 0.1055
+      }
+    ]
+  },
+  "slug": "pair-mission-board",
+  "error": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/buidl/pair-mission-board/contracts/src/PairMissionBoard.sol'",
+  "run_url": "https://github.com/Blockchains/buidl/actions/runs/37228703895"
+}
