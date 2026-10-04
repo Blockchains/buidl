@@ -1,0 +1,86 @@
+{
+  "started_at": "2026-10-04T19:33:39+00:00",
+  "status": "failed",
+  "steps": {
+    "parse": {
+      "program": "ETHOnline 2026",
+      "kind": "hackathon",
+      "tracks": 28,
+      "criteria": 6
+    },
+    "catalog": {
+      "hub": 31,
+      "index": 236,
+      "grokhack": 99,
+      "starters": 14,
+      "errors": {}
+    },
+    "plan": {
+      "title": "DeskSettle",
+      "contract": "DeskSettle",
+      "chain": "Sepolia",
+      "tracks": [
+        "Best DeFi/Onchain Finance Application",
+        "Best Agentic Economy Application with Circle Agent Stack",
+        "Best B2B financial product",
+        "Best financial flow",
+        "Automated Liquidation Protection Challenge"
+      ],
+      "blocks": [
+        "Blockchains/blockchainlab-starters/starters/foundry-oz-tokens",
+        "Blockchains/blockchainlab-starters/starters/chainlink-price-feed",
+        "Blockchains/forge-example-usd-savings-vault",
+        "Blockchains/forge-usd-priced-membership-nft",
+        "Blockchains/blockchainlab-labs",
+        "Blockchains/foundry",
+        "Blockchains/hackathon-entry-template",
+        "Blockchains/blockchainlab-starters",
+        "Blockchains/openzeppelin-contracts",
+        "Blockchains/forge-std",
+        "Blockchains/buidl"
+      ],
+      "unverified_dropped": []
+    }
+  },
+  "mode": "branch",
+  "elapsed_s": 425,
+  "grok_usage": {
+    "calls": 3,
+    "prompt_tokens": 30046,
+    "completion_tokens": 16094,
+    "usd": 0.3162,
+    "seconds": 422.3,
+    "detail": [
+      {
+        "purpose": "parse-brief",
+        "model": "grok-4.7",
+        "seconds": 58.1,
+        "prompt_tokens": 13851,
+        "completion_tokens": 7152,
+        "reasoning_tokens": 1338,
+        "usd": 0.0769
+      },
+      {
+        "purpose": "plan",
+        "model": "grok-4.7",
+        "seconds": 82.9,
+        "prompt_tokens": 13008,
+        "completion_tokens": 3271,
+        "reasoning_tokens": 3372,
+        "usd": 0.0641
+      },
+      {
+        "purpose": "contract",
+        "model": "grok-4.7",
+        "seconds": 281.3,
+        "prompt_tokens": 3187,
+        "completion_tokens": 5671,
+        "reasoning_tokens": 22747,
+        "usd": 0.1752
+      }
+    ]
+  },
+  "slug": "desk-settle-usd",
+  "error": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/buidl/desk-settle-usd/contracts/src/DeskSettle.sol'",
+  "run_url": "https://github.com/Blockchains/buidl/actions/runs/37228692508"
+}
