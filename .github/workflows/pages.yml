@@ -1,0 +1,51 @@
+name: Pages
+run-name: "pages ${{ inputs.nonce || github.sha }}"
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      nonce:
+        description: Correlation id
+        required: false
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: foundry-rs/foundry-toolchain@v1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build hub + every sandbox product (product/* branches)
+        run: |
+          mkdir -p _site/p
+          for ref in $(git for-each-ref --format='%(refname:short)' refs/remotes/origin/product/); do
+            slug="${ref#origin/product/}"
+            echo "::group::$slug"
+            rm -rf "/tmp/p/$slug" && mkdir -p /tmp/p && git worktree add -f "/tmp/p/$slug" "$ref" >/dev/null
+            if bash "/tmp/p/$slug/scripts/build-pages.sh" "$PWD/_site/p/$slug"; then echo "$slug ok"; else echo "::warning::$slug failed to build"; rm -rf "_site/p/$slug"; fi
+            echo "::endgroup::"
+          done
+          python3 scripts/build_hub.py _site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,19 @@
+{
+  "name": "buidl-product-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "node --test test/",
+    "deck": "marp ../docs/submission/DECK.md --html --no-stdin -o dist/deck.html"
+  },
+  "dependencies": {
+    "viem": "^2.21.0"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.0.0",
+    "vite": "^5.4.0"
+  }
+}

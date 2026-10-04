@@ -1,0 +1,207 @@
+{
+  "slug": "priority-pair-ledger",
+  "title": "Priority Pair Ledger",
+  "tagline": "Onchain registry of Superchain priority and collateral-borrow DEX pairs, with incentive escrow and TVL/fee windows.",
+  "problem": "Season 9 grants need measurable DEX TVL and fees in priority pairs, and TVL plus volume-per-TVL for pairs whose assets both exist on lending markets. Those numbers live in spreadsheets and offchain dashboards, so incentive budgets, pair eligibility, and start/end windows are hard to audit from a wallet. Teams cannot show a deployed OP-chain contract that itself records the metric inputs.",
+  "solution": "PriorityPairLedger is one ownable contract that allowlists Superchain chain ids, registers DEX pools as priority or collateral-borrow pairs, and stores signed-off TVL and fee observations. Campaign creators escrow native ETH incentives against a pair window; the owner finalizes start and end averages so delta TVL and delta fees are readable onchain. The GitHub Pages app deploys the contract from an injected wallet and exposes every function as a form, so the demo needs no API keys.",
+  "chain_key": "optimism",
+  "target_tracks": [
+    {
+      "track": "Grants Council applications (priority-pair liquidity and fees)",
+      "sponsor": "Grants Council",
+      "why": "The contract is the measurement and incentive shell for priority-pair liquidity: it stores pair identity, campaign escrow, and the inputs to delta PairTVL and delta PairFees. It matches the tooling and incentive-program examples without pretending to be a production CL manager.",
+      "integration": "Forms register a priority pair, post TVL and cumulative fee observations, open an ETH incentive campaign, and finalize a window that emits the stored start and end figures."
+    },
+    {
+      "track": "Grants Council Mission",
+      "sponsor": "Token House / Governance Fund",
+      "why": "Collateral-borrow eligibility is an explicit pair flag: both assets must be marked lendable before a pair counts toward the primary metric. The demo deploys the team's own contract on an OP Stack testnet; mainnet Superchain Index deployment is the grant milestone, not the keyless demo.",
+      "integration": "setLendingFlags records that token0 and token1 are both available on a lending market. Only pairs with both flags can be marked metricEligible. No Morpho or Aave calls in the demo."
+    },
+    {
+      "track": "Developer Advisory Board Mission",
+      "sponsor": "Developer Advisory Board / Governance Fund",
+      "why": "This is open-source metric tooling in the same family as prior monitoring mission requests, not an audit grant. It gives reviewers a public contract interface for pair TVL and fee windows that OP Labs or OSO could later read. It does not by itself deliver audit scope or volume-per-TVL from a DEX.",
+      "integration": "View functions expose pair status, observation history pointers, and finalized deltas. Sponsor-side indexers and audit work stay in the roadmap."
+    }
+  ],
+  "contract": {
+    "name": "PriorityPairLedger",
+    "description": "Ownable, pausable registry of DEX pairs and incentive campaigns. Stores chain id, pool, both tokens, priority and collateral-borrow flags, TVL and fee observations, and ETH escrow. Owner finalizes a window; campaign creators withdraw unused ETH after the end. No external DEX or lending calls.",
+    "functions": [
+      {
+        "signature": "setChainAllowed(uint256 chainId, bool allowed)",
+        "purpose": "Owner allowlists Superchain Index chain ids the registry will accept."
+      },
+      {
+        "signature": "registerPair(bytes32 pairId, address token0, address token1, address pool, uint256 chainId, bool priority)",
+        "purpose": "Owner registers a DEX pool. token0 must be the lower address. Starts ineligible for the lending metric."
+      },
+      {
+        "signature": "setLendingFlags(bytes32 pairId, bool token0Lendable, bool token1Lendable)",
+        "purpose": "Owner records that each asset is available on a lending market. metricEligible becomes true only if both are true and the chain is allowlisted."
+      },
+      {
+        "signature": "postObservation(bytes32 pairId, uint256 tvl, uint256 cumulativeFees, uint256 volume, bytes32 sourceHash)",
+        "purpose": "Owner posts a TVL, cumulative-fee, and volume reading with an offchain source hash. Append-only while unpaused."
+      },
+      {
+        "signature": "openCampaign(bytes32 pairId, uint64 startTime, uint64 endTime) payable",
+        "purpose": "Anyone escrows ETH as incentives for a registered pair. Returns a campaign id via event."
+      },
+      {
+        "signature": "finalizeWindow(bytes32 pairId, uint256 startObsIndex, uint256 endObsIndex)",
+        "purpose": "Owner binds a pair window to two observations and stores delta TVL, delta fees, and volume-per-TVL using the end TVL as denominator when non-zero."
+      },
+      {
+        "signature": "setCampaignPayout(uint256 campaignId, address recipient, uint256 amount)",
+        "purpose": "Owner assigns a payout from that campaign's remaining escrow after a finalized window. Does not pull DEX liquidity."
+      },
+      {
+        "signature": "claimPayout(uint256 campaignId)",
+        "purpose": "Assigned recipient withdraws their ETH payout."
+      },
+      {
+        "signature": "withdrawUnused(uint256 campaignId)",
+        "purpose": "Campaign creator withdraws unassigned ETH after endTime."
+      },
+      {
+        "signature": "pause()",
+        "purpose": "Owner pauses observations, campaigns, and claims."
+      },
+      {
+        "signature": "unpause()",
+        "purpose": "Owner resumes the registry."
+      },
+      {
+        "signature": "getPair(bytes32 pairId)",
+        "purpose": "Returns tokens, pool, chain, flags, and last finalized deltas for the form UI."
+      },
+      {
+        "signature": "getObservation(bytes32 pairId, uint256 index)",
+        "purpose": "Returns one stored TVL, fee, and volume reading."
+      }
+    ],
+    "events": [
+      "ChainAllowed(uint256 chainId, bool allowed)",
+      "PairRegistered(bytes32 indexed pairId, address token0, address token1, address pool, uint256 chainId, bool priority)",
+      "LendingFlagsSet(bytes32 indexed pairId, bool token0Lendable, bool token1Lendable, bool metricEligible)",
+      "ObservationPosted(bytes32 indexed pairId, uint256 index, uint256 tvl, uint256 cumulativeFees, uint256 volume, bytes32 sourceHash)",
+      "CampaignOpened(uint256 indexed campaignId, bytes32 indexed pairId, address funder, uint256 amount, uint64 startTime, uint64 endTime)",
+      "WindowFinalized(bytes32 indexed pairId, int256 deltaTvl, uint256 deltaFees, uint256 volumePerTvl)",
+      "PayoutAssigned(uint256 indexed campaignId, address recipient, uint256 amount)",
+      "PayoutClaimed(uint256 indexed campaignId, address recipient, uint256 amount)",
+      "UnusedWithdrawn(uint256 indexed campaignId, address funder, uint256 amount)"
+    ],
+    "notes": "constructor MUST take no arguments (owner = msg.sender)"
+  },
+  "frontend": {
+    "features": [
+      "Connect an injected wallet on the Optimism testnet",
+      "Deploy PriorityPairLedger from the browser; deployer becomes owner",
+      "One form per write and view function, including payable openCampaign",
+      "Show the latest block and transaction receipts for register, observe, finalize, and claim",
+      "Read getPair and getObservation after each write so deltas are visible without a custom UI"
+    ]
+  },
+  "roadmap": [
+    "Replace owner-posted observations with a read-only indexer of Uniswap v3/v4 pool TVL, fees, and volume",
+    "Verify both assets against Morpho Blue markets and Aave reserves before metricEligible can be set",
+    "Publish a static Superchain Index pair sheet sourced from public DefiLlama and chainid data",
+    "Multi-chain campaign deployment on eligible OP Chains that return revenue to the Collective",
+    "Optional Safe ownership and an independent audit under a Developer Advisory Board audit grant"
+  ],
+  "architecture": {
+    "mermaid": "flowchart LR\n  wallet[Injected wallet] --> pages[GitHub Pages forms]\n  pages --> ledger[PriorityPairLedger]\n  owner[Owner] --> ledger\n  funder[Campaign funder] --> ledger\n  ledger --> events[Pair and window events]\n  later[Future indexer] -.-> ledger",
+    "components": [
+      {
+        "name": "PriorityPairLedger",
+        "kind": "contract",
+        "block_ref": "Blockchains/openzeppelin-contracts"
+      },
+      {
+        "name": "GitHub Pages form app",
+        "kind": "frontend",
+        "block_ref": "Blockchains/blockchainlab-starters"
+      },
+      {
+        "name": "Observation source hash",
+        "kind": "external",
+        "block_ref": null
+      },
+      {
+        "name": "Future Morpho and Aave reads",
+        "kind": "external",
+        "block_ref": "Blockchains/morpho-blue"
+      }
+    ]
+  },
+  "bill_of_blocks": [
+    {
+      "ref": "Blockchains/openzeppelin-contracts",
+      "how_used": "Import OpenZeppelin v5 Ownable, Pausable, and ReentrancyGuard for admin, pause, and ETH payouts.",
+      "reuse_method": "vendored"
+    },
+    {
+      "ref": "Blockchains/blockchainlab-starters",
+      "how_used": "Foundry project layout and test harness follow the foundry-oz-tokens starter, with this single product contract instead of a token.",
+      "reuse_method": "starter"
+    },
+    {
+      "ref": "Blockchains/blockchainlab-labs",
+      "how_used": "Pair accounting and Foundry assertion style follow the AMM labs: ordered token addresses, cumulative fee deltas, and fuzzed window bounds.",
+      "reuse_method": "pattern"
+    },
+    {
+      "ref": "Blockchains/morpho-blue",
+      "how_used": "Collateral-borrow eligibility follows Morpho market params conceptually: a pair counts only when both assets are flagged as lendable. No Morpho bytecode is called.",
+      "reuse_method": "pattern"
+    },
+    {
+      "ref": "Blockchains/optimism",
+      "how_used": "Allowlist defaults use OP Stack chain ids from the Optimism repo so the registry targets Superchain chains rather than an arbitrary EVM list.",
+      "reuse_method": "pattern"
+    },
+    {
+      "ref": "Blockchains/chains",
+      "how_used": "Chain-id constants checked into the contract are taken from the chains metadata registry for OP Chains in the Superchain Index.",
+      "reuse_method": "pattern"
+    },
+    {
+      "ref": "Blockchains/forge-example-usd-savings-vault",
+      "how_used": "Campaign escrow uses the same bounded-admin pattern as that vault: owner can assign payouts only up to deposited ETH, and unused funds return to the funder.",
+      "reuse_method": "pattern"
+    },
+    {
+      "ref": "Blockchains/forge-std",
+      "how_used": "vendored into contracts/lib at a pinned tag",
+      "reuse_method": "vendored"
+    },
+    {
+      "ref": "Blockchains/buidl",
+      "how_used": "product template, CI, Pages, submission pack generator",
+      "reuse_method": "template"
+    }
+  ],
+  "sponsor_integrations_todo": [
+    "Read Morpho Blue market params on OP Chains to set lending flags from chain state instead of the owner",
+    "Read Aave reserve flags for the same collateral-borrow check",
+    "Index Uniswap-style pool TVL, fees, and volume so observations are not owner-posted",
+    "Submit deployed contract addresses to OP Labs or Open Source Observer for End of Season 9 measurement",
+    "Safe module or Safe ownership migration for campaign admin, which needs a mainnet Safe deployment"
+  ],
+  "risks": [
+    "Demo TVL, fees, and volume are owner-attested via sourceHash, so they are not yet oracle-grade inputs to the grant formulas.",
+    "A malicious owner can mis-assign escrow; production needs a multisig and published payout rules.",
+    "volumePerTvl uses the stored end TVL and will not match OSO methodology until the indexer exists.",
+    "Browser-deployed testnet contracts do not by themselves satisfy eligible OP Chain mainnet deployment.",
+    "Priority-pair lists change on an external sheet, so onchain allowlists can go stale."
+  ],
+  "chain": {
+    "id": 11155420,
+    "name": "OP Sepolia",
+    "rpc": "https://sepolia.optimism.io",
+    "explorer": "https://sepolia-optimism.etherscan.io"
+  },
+  "unverified_blocks": []
+}

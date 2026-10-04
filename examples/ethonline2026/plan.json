@@ -1,0 +1,191 @@
+{
+  "slug": "route-journal",
+  "title": "Route Journal",
+  "tagline": "A keyless Sepolia desk that files a Uniswap v3 swap intent and executes it from a static page.",
+  "problem": "Hackathon DeFi demos either mock swaps or depend on sponsor API keys, hosted backends, and multi-contract stacks that cannot be finished on GitHub Pages. Teams also lack a public, on-chain record of what route was intended versus what actually settled.",
+  "solution": "Route Journal is one OpenZeppelin v5 contract plus a Vite app. A trader files token, fee, amount, and min-out; the page quotes the canonical v3 pool over a public Sepolia RPC; execute pulls tokens and calls the official SwapRouter02. A GitHub Action republishes journal events as static JSON so the demo needs no server and no paid key.",
+  "chain_key": "ethereum",
+  "target_tracks": [
+    {
+      "track": "Best Uniswap Stack Contribution",
+      "sponsor": "Uniswap Foundation",
+      "why": "Start-fresh build, not the Continuity pool. The product integrates Uniswap AMM v3 as the execution venue: pool identity, on-chain quote, and SwapRouter02 settlement are load-bearing, and the repo can ship FEEDBACK.md plus the required feedback-form link.",
+      "integration": "Vendored IUniswapV3Pool and SwapRouter/Quoter interfaces; frontend computes the v3 pool address and eth_calls slot0 plus QuoterV2; RouteJournal.executeIntent settles via exactInputSingle on Sepolia. No Uniswap API key."
+    }
+  ],
+  "contract": {
+    "name": "RouteJournal",
+    "description": "Owner-administered journal of swap intents. Stores trader, tokenIn, tokenOut, fee, amountIn, amountOutMin, deadline, and status. Execution escrows the input token, approves the owner-set SwapRouter02, and records amountOut. Rejects expired, cancelled, or foreign intents. Pausable. USD notion is display-only off-chain, not enforced.",
+    "functions": [
+      {
+        "signature": "setRouter(address router)",
+        "purpose": "Owner sets the official Sepolia SwapRouter02 after verifying the Uniswap deployment list. Required because the constructor cannot take arguments."
+      },
+      {
+        "signature": "fileIntent(address tokenIn, address tokenOut, uint24 fee, uint256 amountIn, uint256 amountOutMin, uint256 deadline)",
+        "purpose": "Msg.sender files a pending intent. Tokens stay in the wallet until execute."
+      },
+      {
+        "signature": "cancelIntent(uint256 id)",
+        "purpose": "Intent owner cancels a still-pending intent."
+      },
+      {
+        "signature": "executeIntent(uint256 id)",
+        "purpose": "Intent owner only. SafeERC20 pull, approve router, exactInputSingle, mark executed with amountOut, refund unused input."
+      },
+      {
+        "signature": "pause()",
+        "purpose": "Owner pauses file and execute."
+      },
+      {
+        "signature": "unpause()",
+        "purpose": "Owner resumes file and execute."
+      },
+      {
+        "signature": "getIntent(uint256 id)",
+        "purpose": "Returns the stored intent for the static UI."
+      }
+    ],
+    "events": [
+      "RouterUpdated(address router)",
+      "IntentFiled(uint256 indexed id, address indexed trader, address tokenIn, address tokenOut, uint24 fee, uint256 amountIn, uint256 amountOutMin, uint256 deadline)",
+      "IntentCancelled(uint256 indexed id)",
+      "IntentExecuted(uint256 indexed id, uint256 amountOut)",
+      "Paused(address account)",
+      "Unpaused(address account)"
+    ],
+    "notes": "constructor MUST take no arguments (owner = msg.sender)"
+  },
+  "frontend": {
+    "features": [
+      "Connect an injected wallet on Ethereum Sepolia via viem and show chain metadata from the free Blockchain Lab chains JSON.",
+      "Build a v3 route: token pair, fee tier, pool address from the v3 CREATE2 formula, slot0 and liquidity, QuoterV2 eth_call for amountOut.",
+      "File, cancel, and execute an intent; surface min-out slippage and router address before the irreversible call.",
+      "List intents from contract reads and from the committed activity.json feed.",
+      "Unit and ABI helpers for amounts and SwapRouter calldata, with explorer links and a short architecture note for judges."
+    ]
+  },
+  "automation": [
+    {
+      "name": "journal-feed",
+      "purpose": "workflow_dispatch and a six-hour cron: cast/forge reads IntentFiled and IntentExecuted on the public Sepolia RPC and commits activity.json for GitHub Pages. No API key."
+    }
+  ],
+  "architecture": {
+    "mermaid": "flowchart LR\n  Wallet[Injected wallet] --> App[Vite Pages app]\n  App --> Journal[RouteJournal]\n  App --> Pool[Uniswap v3 pool]\n  App --> Quoter[QuoterV2]\n  Journal --> Router[SwapRouter02]\n  App --> LabAPI[blockchainlab-api chains JSON]\n  Action[journal-feed Action] --> Journal\n  Action --> Feed[activity.json]\n  Feed --> App",
+    "components": [
+      {
+        "name": "RouteJournal",
+        "kind": "contract",
+        "block_ref": "Blockchains/blockchainlab-starters"
+      },
+      {
+        "name": "Vite Pages app",
+        "kind": "frontend",
+        "block_ref": "Blockchains/blockchainlab-tools"
+      },
+      {
+        "name": "journal-feed",
+        "kind": "action",
+        "block_ref": "Blockchains/foundry"
+      },
+      {
+        "name": "Uniswap v3 pool and SwapRouter02",
+        "kind": "external",
+        "block_ref": "Blockchains/v3-core"
+      },
+      {
+        "name": "blockchainlab-api",
+        "kind": "external",
+        "block_ref": "Blockchains/blockchainlab-api"
+      }
+    ]
+  },
+  "bill_of_blocks": [
+    {
+      "ref": "Blockchains/blockchainlab-starters",
+      "how_used": "Repo layout and Foundry+OZ v5 test setup taken from the foundry-oz-tokens starter; RouteJournal is the single new contract, not a copy of the token kit.",
+      "reuse_method": "starter"
+    },
+    {
+      "ref": "Blockchains/hackathon-entry-template",
+      "how_used": "README skeleton and docs/SUBMISSION.md checklist, including the Uniswap FEEDBACK.md pointer and line-of-code map.",
+      "reuse_method": "starter"
+    },
+    {
+      "ref": "Blockchains/v3-core",
+      "how_used": "Vendored IUniswapV3Pool and the PoolAddress CREATE2 formula so the app and tests identify the canonical pool without a factory call dependency beyond the known factory address.",
+      "reuse_method": "vendored"
+    },
+    {
+      "ref": "Blockchains/v3-periphery",
+      "how_used": "Vendored ISwapRouter exactInputSingle and IQuoterV2 ABI used by executeIntent and by the browser eth_call quote.",
+      "reuse_method": "vendored"
+    },
+    {
+      "ref": "Blockchains/dmm-dao-web-app",
+      "how_used": "Fee-tier and slippage field pattern from the open-source Uniswap interface, reimplemented in the Vite page rather than running that Next app.",
+      "reuse_method": "pattern"
+    },
+    {
+      "ref": "Blockchains/blockchainlab-labs",
+      "how_used": "Foundry test shape from the AMM labs: fork-free router mock plus a mainnet-fork optional test that is skipped in CI when no RPC secret is set.",
+      "reuse_method": "pattern"
+    },
+    {
+      "ref": "Blockchains/foundry",
+      "how_used": "forge test and cast log decoding in the journal-feed Action; no Foundry source is modified.",
+      "reuse_method": "pattern"
+    },
+    {
+      "ref": "Blockchains/blockchainlab-tools",
+      "how_used": "Client-side wei/decimal and ABI decode helpers copied into the static app for amount entry and router calldata preview.",
+      "reuse_method": "vendored"
+    },
+    {
+      "ref": "Blockchains/blockchainlab-api",
+      "how_used": "Browser fetches the nightly chains dataset for chain id 11155111, public RPC hints, and explorer base URL. Demo does not use keyed datasets.",
+      "reuse_method": "api"
+    },
+    {
+      "ref": "Blockchains/openzeppelin-contracts",
+      "how_used": "vendored into contracts/lib at a pinned tag",
+      "reuse_method": "vendored"
+    },
+    {
+      "ref": "Blockchains/forge-std",
+      "how_used": "vendored into contracts/lib at a pinned tag",
+      "reuse_method": "vendored"
+    },
+    {
+      "ref": "Blockchains/buidl",
+      "how_used": "product template, CI, Pages, submission pack generator",
+      "reuse_method": "template"
+    }
+  ],
+  "sponsor_integrations_todo": [
+    "The Graph: live Standardized Subgraph or Substreams query needs a Subgraph Studio or Graph Market key; not claimed.",
+    "Hedera x402 / Asset Tokenization Studio / Harness: different chain and SDKs; not in this demo.",
+    "Arc and Circle USDC, wallets, CCTP, Agent Stack: need Arc deployment and Circle keys; mainnet tranche is a later cutover.",
+    "World AgentKit, AgentBook, Selfie Check: need World ID sandbox credentials.",
+    "1inch Aqua/SwapVM: official contracts are not in this stack; local-fork token transfers would be a separate app.",
+    "ENSv2 Sepolia name resolution is a possible cosmetic add-on only; not central, so the ENS prizes are not claimed.",
+    "Ledger Agent Stack and wallet-cli ring need a device or CLI host, not this Pages demo.",
+    "Privy wallets, policies, and intents need a Privy app id.",
+    "Chainlink CRE Confidential Workflows need the CRE CLI and a TEE handler; a price-feed read would not meet that brief.",
+    "Uniswap API and CCA are unused; do not claim them. Submit the Uniswap Developer Feedback Form with the FEEDBACK.md URL before judging."
+  ],
+  "risks": [
+    "Sepolia v3 liquidity is thin; execute can revert on amountOutMin even when the quote looked valid. The UI must show the quote block and let the user lower size.",
+    "SwapRouter02 and QuoterV2 addresses must be copied from Uniswap's current Sepolia deployment list into setRouter and the frontend config. A wrong constant would send approvals to the wrong contract, so the router starts unset and execute reverts until the owner sets it.",
+    "Public RPCs rate-limit eth_call and getLogs; the Action should paginate and the page should fall back to activity.json.",
+    "Only the Uniswap Foundation start-fresh stack prize is an honest fit. Other sponsor pools need keys, other chains, or continuity status this demo does not have."
+  ],
+  "chain": {
+    "id": 11155111,
+    "name": "Sepolia",
+    "rpc": "https://ethereum-sepolia-rpc.publicnode.com",
+    "explorer": "https://sepolia.etherscan.io"
+  },
+  "unverified_blocks": []
+}

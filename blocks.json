@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "name": "buidl",
+  "repo": "Blockchains/buidl",
+  "summary": "Brief-to-product pipeline on GitHub Actions: a hackathon or grant brief becomes a repo with a Foundry contract + tests, a live GitHub Pages dApp, CI and a submission pack (description per judging criterion, track mapping, demo script, Marp deck, milestones/budget, compliance), built from Blockchain Lab blocks and verified (CI green, Pages 200).",
+  "kind": ["github-action", "cli", "generator"],
+  "stability": "beta",
+  "license": "MIT",
+  "entrypoints": [
+    {"type": "github-action", "name": "Brief to product", "ref": ".github/workflows/buidl.yml", "usage": "workflow_dispatch inputs: brief_url, brief_text, name, mode; or open a 'Brief' issue"},
+    {"type": "cli", "name": "python3 -m buidl run", "ref": "buidl/cli.py", "usage": "python3 -m buidl run --brief-url <url> [--brief-file f] [--name slug] [--mode auto|create|branch|none]"},
+    {"type": "cli", "name": "python3 -m buidl promote", "ref": "buidl/cli.py", "usage": "python3 -m buidl promote <slug>  # sandbox branch -> Blockchains/<slug>"}
+  ],
+  "inputs": [
+    {"name": "brief_url / brief_text", "type": "string", "description": "ETHGlobal, Devpost, DoraHacks, Gitcoin, grant pages, or pasted text"},
+    {"name": "XAI_API_KEY", "type": "secret", "description": "Grok (grok-4.7) for parsing, planning, contract and docs"},
+    {"name": "FORGE_TOKEN", "type": "secret", "description": "optional fine-grained PAT to create repos; without it products go to sandbox branches + Pages here"}
+  ],
+  "outputs": [
+    {"name": "product repo", "type": "repo", "description": "contracts/, web/, docs/submission/, COMPLIANCE.md, brief/, CI + Pages, README/AGENTS.md/llms.txt/blocks.json"},
+    {"name": "runs/<slug>-<run>.json", "type": "file", "description": "requirements summary, plan, contract attempts, CI/Pages URLs, Grok tokens and USD"}
+  ],
+  "deps": ["python>=3.10", "foundry", "node>=20", "gh"],
+  "compatible_with": [
+    {"repo": "Blockchains/blockchains.github.io", "how": "blocks.json hub used as the planning catalogue"},
+    {"repo": "Blockchains/blockchainlab-index", "how": "236-fork catalogue with reuse fields used by the planner"},
+    {"repo": "Blockchains/grokhack-index", "how": "Grok/xAI integrations catalogue used by the planner"},
+    {"repo": "Blockchains/blockchainlab-starters", "how": "starters offered to the planner"},
+    {"repo": "Blockchains/openzeppelin-contracts", "how": "vendored into every product (v5.7.0)"},
+    {"repo": "Blockchains/forge-std", "how": "vendored into every product (v1.17.0)"},
+    {"repo": "Blockchains/blockchainlab-compose", "how": "sibling generator for token/NFT ideas (same publish pattern)"},
+    {"repo": "Blockchains/hackathons", "how": "source of open hackathon briefs to feed in"}
+  ],
+  "tests": {"command": "python3 -m unittest discover -s tests && python3 -m buidl run --requirements examples/ethonline2026/requirements.json --plan examples/ethonline2026/plan.json --mode none --no-grok", "ci": ".github/workflows/ci.yml", "network": true},
+  "docs": {"readme": "README.md", "agents": "AGENTS.md", "llms": "llms.txt"}
+}

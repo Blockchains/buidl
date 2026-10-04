@@ -1,0 +1,83 @@
+name: Brief to product
+run-name: "buidl ${{ inputs.name || github.event.issue.title || inputs.brief_url || 'brief' }} ${{ inputs.nonce }}"
+on:
+  workflow_dispatch:
+    inputs:
+      brief_url:
+        description: Brief URL(s), space separated (ETHGlobal /prizes, Devpost, DoraHacks, Gitcoin, grant pages)
+        required: false
+      brief_text:
+        description: Or paste the brief text
+        required: false
+      name:
+        description: Repo/slug name (optional)
+        required: false
+      mode:
+        description: auto = new repo if FORGE_TOKEN is set, else sandbox branch + Pages here
+        type: choice
+        options: [auto, create, branch, none]
+        default: auto
+      nonce:
+        description: Optional correlation id (shown in the run name)
+        required: false
+  issues:
+    types: [opened]
+permissions:
+  contents: write
+  actions: write
+  issues: write
+concurrency:
+  group: buidl-${{ github.event.issue.number || inputs.name || github.run_id }}
+  cancel-in-progress: false
+jobs:
+  buidl:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (contains(github.event.issue.labels.*.name, 'brief') && contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.issue.author_association))
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+      FORGE_TOKEN: ${{ secrets.FORGE_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: foundry-rs/foundry-toolchain@v1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Playwright (browser smoke test of the live site)
+        run: pip install -q playwright==1.63.0 && python -m playwright install --with-deps chromium
+      - name: Install gitleaks
+        run: |
+          curl -sSfL https://github.com/gitleaks/gitleaks/releases/download/v8.21.2/gitleaks_8.21.2_linux_x64.tar.gz | tar xz -C /usr/local/bin gitleaks
+      - name: Check secrets
+        run: |
+          [ -n "$XAI_API_KEY" ] && echo "XAI_API_KEY: set" || { echo "::error::XAI_API_KEY secret missing"; exit 1; }
+          [ -n "$FORGE_TOKEN" ] && echo "FORGE_TOKEN: set (mode auto = create repo)" || echo "::notice::FORGE_TOKEN not set - auto mode publishes to a sandbox branch product/<slug> + Pages in this repo"
+      - id: inputs
+        name: Read inputs
+        run: python3 scripts/issue_inputs.py
+      - id: run
+        name: Brief -> requirements -> plan -> product -> verify
+        run: |
+          mapfile -t ARGS < <(python3 -c 'import json;print("\n".join(json.load(open("inputs/args.json"))))')
+          python3 -m buidl run "${ARGS[@]}" --nonce "run${GITHUB_RUN_ID}" --result result.json || echo "failed=1" >> "$GITHUB_OUTPUT"
+      - name: Record run
+        if: always()
+        run: |
+          python3 scripts/record_run.py result.json
+          git config user.name buidl-bot && git config user.email buidl-bot@users.noreply.github.com
+          git add runs/ && git commit -q -m "runs: $(python3 -c 'import json;print(json.load(open("result.json")).get("slug","unknown"))') ${GITHUB_RUN_ID}" || exit 0
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep 5; done
+          gh workflow run pages.yml --ref main -f nonce="hub${GITHUB_RUN_ID}" || true
+      - name: Comment on the issue
+        if: always() && steps.inputs.outputs.issue != ''
+        run: gh issue comment "${{ steps.inputs.outputs.issue }}" --body-file summary.md
+      - name: Fail if the product was not verified
+        if: steps.run.outputs.failed == '1'
+        run: exit 1

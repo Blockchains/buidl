@@ -1,0 +1,186 @@
+{
+  "kind": "grant",
+  "program": "Season 9 Grants Council / Season 9 Governance Fund Missions",
+  "organizer": "Optimism Collective",
+  "summary": "The Grants Council seeks projects that grow Superchain adoption by increasing DEX liquidity in priority pairs and the fees generated from trading those pairs. Season 9 Governance Fund Missions fund the Grants Council (3.89M OP) and the Developer Advisory Board (0.98M OP) to make grants toward DEX TVL and trading volume per TVL for collateral-borrow pairs that exist on lending markets. Projects must have deployed their own contracts on eligible OP Chains in the Superchain Index that contribute revenue back to the Collective.",
+  "deadlines": [
+    {
+      "name": "Applications Open",
+      "date": "2026-02-11",
+      "notes": "Stated as Feb 11th 2026"
+    },
+    {
+      "name": "Submissions Closes",
+      "date": "2026-05-20",
+      "notes": "Stated as May 20th 2026"
+    },
+    {
+      "name": "Grant Review",
+      "date": null,
+      "notes": "Estimated 15 business days total: Submission Intake 5 days, GovNERDs Buffer 1 day, Ops Sync 1 day, Final Review 5 days, Final Decision + Buffer 2 days, Ops Wrap-up 1 day"
+    },
+    {
+      "name": "Measurement Date",
+      "date": null,
+      "notes": "End of Season 9; outcomes assessed by OP Labs or Open Source Observer"
+    }
+  ],
+  "tracks": [
+    {
+      "name": "Grants Council applications (priority-pair liquidity and fees)",
+      "sponsor": "Grants Council",
+      "prize_usd": null,
+      "prize_text": "Grant amounts not stated on the application post; Grants Council Season 9 Governance Fund budget is 3.89M OP",
+      "requirements": [
+        "Grow Superchain adoption by increasing DEX liquidity in priority pairs and fees generated from trading those pairs",
+        "Target DEX TVL in Priority Pairs (Liquidity), formula \u0394PairTVL = AvgPairTVL_end \u2212 AvgPairTVL_start, and/or DEX Fees in Priority Pairs, formula \u0394PairFees = PairFees_end \u2212 PairFees_start",
+        "Eligible examples: incentive programs that increase and retain liquidity in priority pairs; vaults, strategies, or automation that improve depth (e.g. concentrated liquidity management); routing, aggregation, or UX that increases volume and fees in priority-pair pools; integrations that move existing liquidity into eligible priority pools and keep it there; tooling that tracks, monitors, or improves priority-pair TVL and fee performance"
+      ],
+      "sponsor_tech": []
+    },
+    {
+      "name": "Grants Council Mission",
+      "sponsor": "Token House / Governance Fund",
+      "prize_usd": null,
+      "prize_text": "3.89M OP from the Governance Fund (was ~6.29M OP in Season 8)",
+      "requirements": [
+        "Grants Council makes grants on behalf of the Token House toward Season 9 success metrics",
+        "Primary: DEX TVL for collateral-borrow pairs that exist on lending markets (e.g. Morpho, Aave); both assets in a pair must be available on lending markets (example: WETH/USDC DEX pool where WETH is collateral and USDC is borrowed on Morpho)",
+        "Secondary: DEX trading volume per TVL for collateral-borrow pairs that exist on lending markets",
+        "Highest-priority liquidity pairs to be shown on a sheet updated on an ongoing basis",
+        "Incentive programs should be available to any chain in the Superchain contributing revenue back to the Collective (Superchain Index)",
+        "Projects eligible if they have deployed their own contracts on eligible OP Chains",
+        "Selection algorithm at Grants Council discretion; must be made public on the forum before the first round of selection",
+        "Selected projects assessed by OP Labs or Open Source Observer on contribution to the success metrics at End of Season 9"
+      ],
+      "sponsor_tech": [
+        "Morpho",
+        "Aave"
+      ]
+    },
+    {
+      "name": "Developer Advisory Board Mission",
+      "sponsor": "Developer Advisory Board / Governance Fund",
+      "prize_usd": null,
+      "prize_text": "0.98M OP from the Governance Fund (relative to 949k OP in Season 8)",
+      "requirements": [
+        "Grants that drive developer adoption, either Audit grants or Mission Requests",
+        "Same primary metric: DEX TVL for collateral-borrow pairs on lending markets (e.g. Morpho, Aave), with both assets available on lending markets",
+        "Same secondary metric: DEX trading volume per TVL for those collateral-borrow pairs",
+        "Incentive programs recommended for any Superchain chain contributing revenue back to the Collective (Superchain Index)",
+        "Projects eligible if they have deployed their own contracts on eligible OP Chains; additional criteria may be set by the Developer Advisory Board",
+        "Selection algorithm at DAB discretion and must be published on the forum before the first round",
+        "Evaluation by OP Labs or Open Source Observer on the measurement date (End of Season 9)",
+        "Cited prior technical grant types include audits and Foundation Mission Requests such as Open-Source Monitoring & Alerting and Cross-Chain Key Management for Safe"
+      ],
+      "sponsor_tech": [
+        "Morpho",
+        "Aave",
+        "Safe"
+      ]
+    }
+  ],
+  "judging_criteria": [
+    {
+      "name": "DEX TVL in Priority Pairs",
+      "weight": null,
+      "description": "Application metric. \u0394PairTVL = AvgPairTVL_end \u2212 AvgPairTVL_start. Deep liquidity reduces slippage, improves execution, and unlocks more onchain activity across the Superchain."
+    },
+    {
+      "name": "DEX Fees in Priority Pairs",
+      "weight": null,
+      "description": "Application metric. \u0394PairFees = PairFees_end \u2212 PairFees_start. Fees measure real trading demand and willingness to pay to use Superchain venues for swaps."
+    },
+    {
+      "name": "Primary: DEX TVL for collateral-borrow pairs",
+      "weight": null,
+      "description": "Mission success metric for both Grants Council and Developer Advisory Board. Pairs must exist on lending markets; both assets must be available as collateral and borrow assets."
+    },
+    {
+      "name": "Secondary: DEX trading volume per TVL",
+      "weight": null,
+      "description": "Mission success metric. Trading volume per TVL for collateral-borrow pairs on lending markets, used as a proxy for demand-side activity and healthy ecosystem dynamics."
+    }
+  ],
+  "required_chains": [
+    "Superchain",
+    "OP Chains",
+    "Superchain Index chains that contribute revenue back to the Collective"
+  ],
+  "required_sdks": [],
+  "deliverables": [
+    {
+      "name": "Grant application",
+      "required": true,
+      "notes": "Apply for a Grant; submissions close May 20th 2026. Specific application form fields are not stated."
+    },
+    {
+      "name": "Contribution to measured outcomes",
+      "required": true,
+      "notes": "Selected projects assessed by OP Labs or Open Source Observer against the defined success metrics on the measurement date (End of Season 9)."
+    },
+    {
+      "name": "Public selection algorithm / rubric",
+      "required": true,
+      "notes": "Required of the Grants Council and Developer Advisory Board, not of applicants: selection algorithms must be made public on the forum before the first round of selection."
+    }
+  ],
+  "rules": [
+    "Projects must target one of the stated metrics (priority-pair DEX TVL and/or fees on the application post; collateral-borrow DEX TVL and volume per TVL on the mission post).",
+    "For mission metrics, both assets in a liquidity pair need to be available on lending markets.",
+    "The Foundation recommends Season 9 incentive programs be available to any chain in the Superchain contributing revenue back to the Collective, corresponding to the Superchain Index.",
+    "Projects are eligible who have deployed their own contracts on eligible OP Chains.",
+    "Additional eligibility criteria may be determined by the Grants Council or the Developer Advisory Board.",
+    "Selection algorithms are at the discretion of the relevant body but must be published on the forum before the first round of selection.",
+    "Grants Council and Retro Funding are different initiatives; the Foundation runs Retro Funding and governance elects the Grants Council.",
+    "Priority liquidity pairs are maintained on an external sheet that is updated on an ongoing basis; the sheet contents are not included in the brief."
+  ],
+  "grant": {
+    "objective": "Grow Superchain adoption by increasing DEX liquidity and trading activity in priority and collateral-borrow pairs, via Grants Council user-incentive grants and Developer Advisory Board developer-adoption grants (audits or mission requests).",
+    "metrics": [
+      "\u0394PairTVL = AvgPairTVL_end \u2212 AvgPairTVL_start (DEX TVL in Priority Pairs)",
+      "\u0394PairFees = PairFees_end \u2212 PairFees_start (DEX Fees in Priority Pairs)",
+      "Primary: DEX TVL for collateral-borrow pairs that exist on lending markets (e.g. Morpho, Aave)",
+      "Secondary: DEX trading volume per TVL for collateral-borrow pairs that exist on lending markets",
+      "Measurement date: End of Season 9, assessed by OP Labs or Open Source Observer"
+    ],
+    "budget": "Grants Council 3.89M OP from the Governance Fund (about 6.29M OP in Season 8); Developer Advisory Board 0.98M OP from the Governance Fund (949k OP in Season 8). Per-project grant sizes are not stated.",
+    "milestone_rules": [
+      "Grant review estimated at 15 business days: intake 5, GovNERDs buffer 1, ops sync 1, final review 5, final decision plus buffer 2, ops wrap-up 1.",
+      "Outcomes measured at End of Season 9.",
+      "Evaluation is based on ability to generate contribution toward the defined success metrics.",
+      "No applicant milestone payment schedule is stated."
+    ],
+    "eligibility": [
+      "Own contracts deployed on eligible OP Chains.",
+      "Incentive programs recommended for any Superchain Index chain contributing revenue back to the Collective.",
+      "Additional criteria may be set by the Grants Council or Developer Advisory Board.",
+      "Collateral-borrow metric requires both assets of the pair to be available on lending markets."
+    ]
+  },
+  "keywords": [
+    "Optimism",
+    "Superchain",
+    "OP Chains",
+    "Grants Council",
+    "Governance Fund",
+    "DEX TVL",
+    "priority pairs",
+    "DEX fees",
+    "collateral-borrow",
+    "lending markets",
+    "Morpho",
+    "Aave",
+    "concentrated liquidity",
+    "liquidity incentives",
+    "routing",
+    "aggregation",
+    "Developer Advisory Board",
+    "audit grants",
+    "Open Source Observer"
+  ],
+  "sources": [
+    "https://gov.optimism.io/t/season-9-grants-council-applications-now-open/10599",
+    "https://gov.optimism.io/t/season-9-governance-fund-missions/10526"
+  ]
+}

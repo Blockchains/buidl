@@ -1,0 +1,13 @@
+# buidl
+
+> GitHub-native pipeline: hackathon / grant brief (URL or text) -> Grok-parsed requirements -> plan from Blockchain Lab blocks -> generated repo (Foundry contract + tests, Vite/viem app on GitHub Pages, CI, submission pack, compliance checklist) -> verified (CI green, Pages 200).
+
+## Docs
+- [README](https://github.com/Blockchains/buidl/blob/main/README.md): pipeline, outputs, publish modes, FORGE_TOKEN
+- [How to submit a brief](https://github.com/Blockchains/buidl/blob/main/docs/HOW-TO-SUBMIT-A-BRIEF.md)
+- [Cost and time](https://github.com/Blockchains/buidl/blob/main/docs/COST-AND-TIME.md)
+- [Demo runs](https://github.com/Blockchains/buidl/blob/main/docs/DEMOS.md)
+- [AGENTS.md](https://github.com/Blockchains/buidl/blob/main/AGENTS.md)
+- [blocks.json](https://raw.githubusercontent.com/Blockchains/buidl/main/blocks.json)
+- [Hub of generated products](https://blockchains.github.io/buidl/)
+- [Runs JSON](https://blockchains.github.io/buidl/runs.json)

@@ -1,0 +1,827 @@
+{
+ "kind": "hackathon",
+ "program": "ETHOnline 2026",
+ "organizer": "ETHGlobal",
+ "summary": "ETHOnline 2026 is an ETHGlobal online hackathon with sponsor prize pools from The Graph ($15,000), Hedera ($15,000), Arc ($10,000), World ($7,000), 1inch ($7,000), ENS ($5,000), Uniswap Foundation ($5,000), Ledger ($5,000), Privy ($5,000), Chainlink ($3,000), and Bazantic ($3,000). Tracks cover composable blockchain data, agentic payments, stablecoin DeFi, identity, tokenization, confidential workflows, and AI tooling, including separate awards for net-new builds and Continuity Track work on existing projects. Most tracks require a live integration rather than mocks, plus a public repository and a demo; part of each Arc prize is paid only if the same project is deployed to Arc Mainnet by September 30.",
+ "deadlines": [
+  {
+   "name": "Arc Mainnet deployment for conditional prize portion",
+   "date": "September 30",
+   "notes": "Year is not stated. For Best DeFi/Onchain Finance Application and Best Agentic Economy Application with Circle Agent Stack, $2,500 of each $3,500 is awarded only if the same project is deployed to Arc Mainnet by September 30. For Best DeFi or Agentic Application (Continuity), $2,000 of the $3,000 is awarded only if deployed to Arc Mainnet by September 30."
+  },
+  {
+   "name": "Chainlink Automated Liquidation Protection Challenge join window",
+   "date": "Sept 9 to hackathon submission deadline",
+   "notes": "Call join() on the Ethereum Sepolia challenge contract from Sept 9 until the hackathon submission deadline. A calendar date for the submission deadline is not stated."
+  },
+  {
+   "name": "Hackathon submission deadline",
+   "date": "hackathon submission deadline",
+   "notes": "Referenced as the cutoff for joining the Chainlink challenge and for freezing liquidation-protection workflows. No calendar date is stated in the brief."
+  },
+  {
+   "name": "Chainlink challenge scenario run",
+   "date": "next 24h after hackathon submission deadline",
+   "notes": "After the deadline, the Chainlink team will run the scenarios during the next 24h and discover the winner. Workflows cannot be updated after the submission deadline."
+  }
+ ],
+ "tracks": [
+  {
+   "name": "Best Use of Composable or Standardized Graph Products",
+   "sponsor": "The Graph",
+   "prize_usd": 5000,
+   "prize_text": "1st place $2,500; 2nd place $1,500; 3rd place $1,000",
+   "requirements": [
+    "Build on The Graph's composable and standardized data products: use Standardized Subgraphs to query many protocols of a type, compose reusable Substreams packages, layer Subgraph MCP for cross-protocol analysis, or contribute a new composable Substreams module for an emerging standard such as ERC-4626 tokenized-vault flows.",
+    "Either compose two or more of The Graph's products, or build meaningfully on a standardized schema (for example the Messari Standardized Subgraphs).",
+    "Consume live data from a Graph provider, for example Subgraph Studio for Subgraphs or The Graph Market for Substreams. Mocked, local-only, or static datasets do not qualify.",
+    "Simply querying one Subgraph with no composition or standardization does not qualify.",
+    "Authoring or extending a Standardized Subgraph, or contributing a reusable composable Substreams module, is in scope.",
+    "Make the standards leverage clear: show what became easier because a shared schema or composed product was used.",
+    "Submit a public repository and a short demo video (two to four minutes)."
+   ],
+   "sponsor_tech": [
+    "Standardized Subgraphs",
+    "Messari Standardized Subgraphs",
+    "Substreams",
+    "Subgraph MCP",
+    "Subgraph Studio",
+    "The Graph Market"
+   ]
+  },
+  {
+   "name": "Best AI Tooling or AI Use Case with The Graph (From Scratch)",
+   "sponsor": "The Graph",
+   "prize_usd": 6000,
+   "prize_text": "1st place $2,500; 2nd place $1,500; 3rd place $1,000 x 2",
+   "requirements": [
+    "This is the From Scratch / Start Fresh pool: projects begun and built during the hackathon. Open-source starter kits are fine; project-specific prior code is not.",
+    "Use The Graph as a load-bearing part of the project: AI tooling must target The Graph's products or AI Suite, or the agent/app must use Subgraphs, the Subgraph MCP, or Substreams as its source of blockchain data.",
+    "Rewards tooling that makes The Graph easier to use from AI environments such as Claude, Cursor, and ChatGPT (new or extended MCP servers, agent SKILLs, x402 payment tooling, A2A integrations, framework plugins, or client configs) and AI agents or apps that use The Graph as live blockchain data.",
+    "Consume live data from a Graph provider, for example querying Subgraphs with an API key from Subgraph Studio, or streaming Substreams via The Graph Market. Mocked, local-only, or static datasets do not qualify.",
+    "Do meaningful work with the data: reasoning, decisions, automation, or a natural-language interface, not just printing a raw query result. Tooling submissions must be reusable infrastructure, not a single end-user app.",
+    "Open-source the code with a clear README or SKILL.md so judges can run it, and submit a public repository plus a short demo video (two to four minutes).",
+    "Select the Start Fresh pool and follow that pool's ETHGlobal rules.",
+    "For the featured Substreams one-prompt deployment challenge: demonstrate deploying a working Substreams pipeline from a single prompt using the Substreams SKILLs."
+   ],
+   "sponsor_tech": [
+    "Subgraphs",
+    "Subgraph MCP",
+    "Substreams",
+    "Substreams SKILLs",
+    "Subgraph SKILLs",
+    "The Graph AI Suite",
+    "Subgraph Studio",
+    "The Graph Market",
+    "x402"
+   ]
+  },
+  {
+   "name": "Best AI Tooling or AI Use Case with The Graph (Continuity)",
+   "sponsor": "The Graph",
+   "prize_usd": 4000,
+   "prize_text": "1st place $2,500; 2nd place $1,500",
+   "requirements": [
+    "This prize is only available to Continuity Track participants.",
+    "Continuity means extending an existing open-source repo or shipping a new feature on an existing product. Document the pre-existing work; only work done during the event is judged. Extending The Graph's own AI Suite (for example improving an existing MCP server or SKILL) fits this pool.",
+    "Use The Graph as a load-bearing part of the project: AI tooling must target The Graph's products or AI Suite, or the agent/app must use Subgraphs, the Subgraph MCP, or Substreams as its source of blockchain data.",
+    "Consume live data from a Graph provider, for example querying Subgraphs with an API key from Subgraph Studio, or streaming Substreams via The Graph Market. Mocked, local-only, or static datasets do not qualify.",
+    "Do meaningful work with the data: reasoning, decisions, automation, or a natural-language interface, not just printing a raw query result. Tooling submissions must be reusable infrastructure, not a single end-user app.",
+    "Open-source the code with a clear README or SKILL.md so judges can run it, and submit a public repository plus a short demo video (two to four minutes).",
+    "Select the Continuity pool, follow that pool's ETHGlobal rules, and document any pre-existing work.",
+    "For the featured Substreams one-prompt deployment challenge: demonstrate deploying a working Substreams pipeline from a single prompt using the Substreams SKILLs."
+   ],
+   "sponsor_tech": [
+    "Subgraphs",
+    "Subgraph MCP",
+    "Substreams",
+    "Substreams SKILLs",
+    "Subgraph SKILLs",
+    "The Graph AI Suite",
+    "Subgraph Studio",
+    "The Graph Market",
+    "x402"
+   ]
+  },
+  {
+   "name": "AI & Agentic Payments on Hedera",
+   "sponsor": "Hedera",
+   "prize_usd": 6000,
+   "prize_text": "Up to 3 teams will receive $2,000",
+   "requirements": [
+    "Stand up a real x402-gated service on Hedera and build the platform that consumes it.",
+    "Host a live x402-gated service on Hedera testnet or mainnet, settled through the Blocky402 facilitator.",
+    "Build a platform or agent that consumes that service and completes at least one real paid request end to end.",
+    "Public GitHub repo with a README covering setup, architecture, and the payment flow.",
+    "Demo video of five minutes or less showing the paid request executing."
+   ],
+   "sponsor_tech": [
+    "x402",
+    "Blocky402",
+    "Hedera Agent Kit",
+    "HTS",
+    "HCS",
+    "Scheduled Transactions",
+    "ERC-8004",
+    "HCS-14"
+   ]
+  },
+  {
+   "name": "Open Source \u2014 Improve the Hedera Harness",
+   "sponsor": "Hedera",
+   "prize_usd": 2000,
+   "prize_text": "Up to 2 teams will receive $1,000",
+   "requirements": [
+    "Either submit a meaningful contribution to the Hedera Harness (open PR, not merged is fine) or build a new harness that extends or takes direct inspiration from it.",
+    "Public GitHub repo or PR link, with a README or PR description explaining the problem solved and how to run it.",
+    "Demo video of five minutes or less showing the improvement working."
+   ],
+   "sponsor_tech": [
+    "Hedera Harness",
+    "Hedera SDKs",
+    "Hedera Skills"
+   ]
+  },
+  {
+   "name": "Tokenization of Anything",
+   "sponsor": "Hedera",
+   "prize_usd": 6000,
+   "prize_text": "Up to 3 teams will receive $2,000",
+   "requirements": [
+    "Build an enterprise finance application on Hedera using the Asset Tokenization Studio. Use the SDK as it stands, adapt it, extend the web application, or improve it.",
+    "Use the Asset Tokenization Studio (SDK, contracts, web application, or a combination) to issue or manage a tokenised asset.",
+    "Deploy and demonstrate on Hedera testnet.",
+    "Public GitHub repo, with contracts verified on HashScan where applicable.",
+    "Demo video of five minutes or less showing issuance, configuration, and at least one lifecycle operation such as a transfer, compliance check, or distribution."
+   ],
+   "sponsor_tech": [
+    "Asset Tokenization Studio",
+    "@hashgraph/asset-tokenization-sdk",
+    "ERC-3643",
+    "ERC-1400",
+    "HashScan"
+   ]
+  },
+  {
+   "name": "Built on Hedera",
+   "sponsor": "Hedera",
+   "prize_usd": 1000,
+   "prize_text": "Up to 2 teams will receive $500",
+   "requirements": [
+    "This prize is only available to Continuity Track participants.",
+    "The project must have been built for a previous hackathon or already exist in some form on Hedera. It must move forward, not be resubmitted.",
+    "Demonstrate substantive new work completed during this event: new features, new Hedera services integrated, or a significant architectural change. Polish and bug fixes alone will not qualify.",
+    "Public GitHub repo with a README that clearly separates what existed before from what is new, ideally with commit history or a diff.",
+    "Demo video of five minutes or less focused on the new work."
+   ],
+   "sponsor_tech": [
+    "Hedera"
+   ]
+  },
+  {
+   "name": "Best DeFi/Onchain Finance Application",
+   "sponsor": "Arc",
+   "prize_usd": 3500,
+   "prize_text": "$3,500; $2,500 of the total awarded only if the same project is deployed to Arc Mainnet by September 30",
+   "requirements": [
+    "Build stablecoin-native DeFi on Arc: lending, borrowing, swaps, liquidity, FX, yield, payments, treasury, or fintech infrastructure using Arc and USDC.",
+    "Be clear which bounty the submission is for.",
+    "Functional MVP and diagram: working frontend and backend plus an architecture diagram.",
+    "Video demonstration and presentation succinctly outlining core functions and effective use of Circle developer tools/tech, supported by detailed documentation.",
+    "Link to a GitHub or Replit repo.",
+    "$2,500 of the $3,500 is awarded only if the same project is deployed to Arc Mainnet by September 30."
+   ],
+   "sponsor_tech": [
+    "Arc",
+    "USDC",
+    "App Kits",
+    "Circle Wallets",
+    "Circle Contracts",
+    "CCTP",
+    "Gateway",
+    "StableFX"
+   ]
+  },
+  {
+   "name": "Best Agentic Economy Application with Circle Agent Stack",
+   "sponsor": "Arc",
+   "prize_usd": 3500,
+   "prize_text": "$3,500; $2,500 of the total awarded only if the same project is deployed to Arc Mainnet by September 30",
+   "requirements": [
+    "Build autonomous agents that transact on Arc: agents that hold wallets, make payments, manage risk, settle jobs, or transact with other agents using USDC.",
+    "Be clear which bounty the submission is for.",
+    "Functional MVP and diagram: working frontend and backend plus an architecture diagram.",
+    "Video demonstration and presentation succinctly outlining core functions and effective use of Circle developer tools/tech, supported by detailed documentation.",
+    "Link to a GitHub or Replit repo.",
+    "$2,500 of the $3,500 is awarded only if the same project is deployed to Arc Mainnet by September 30."
+   ],
+   "sponsor_tech": [
+    "Arc",
+    "USDC",
+    "Agent Stack",
+    "App Kits",
+    "Circle Wallets",
+    "Circle Contracts",
+    "Nanopayments",
+    "Paymaster"
+   ]
+  },
+  {
+   "name": "Best DeFi or Agentic Application",
+   "sponsor": "Arc",
+   "prize_usd": 3000,
+   "prize_text": "$3,000; $2,000 of the total awarded only if the same project is deployed to Arc Mainnet by September 30",
+   "requirements": [
+    "This prize is only available to Continuity Track participants. Be registered as a Continuity Project under the Continuity Track.",
+    "Build either stablecoin-native DeFi on Arc using Arc and USDC, or autonomous agents that transact on Arc using USDC, as described for the other Arc prizes.",
+    "Be clear which bounty the submission is for.",
+    "Functional MVP and diagram: working frontend and backend plus an architecture diagram.",
+    "Video demonstration and presentation succinctly outlining core functions and effective use of Circle developer tools/tech, supported by detailed documentation.",
+    "Link to a GitHub or Replit repo.",
+    "$2,000 of the $3,000 is awarded only if the same project is deployed to Arc Mainnet by September 30."
+   ],
+   "sponsor_tech": [
+    "Arc",
+    "USDC",
+    "App Kits",
+    "Circle Wallets",
+    "Circle Contracts",
+    "CCTP",
+    "Gateway",
+    "StableFX",
+    "Agent Stack",
+    "Nanopayments",
+    "Paymaster"
+   ]
+  },
+  {
+   "name": "AgentKit Continuity",
+   "sponsor": "World",
+   "prize_usd": 3500,
+   "prize_text": "Up to 3 teams will receive $1,166",
+   "requirements": [
+    "This prize is only available to Continuity Track participants.",
+    "Extend an existing project with AgentKit to distinguish a bot from an agent acting on behalf of a real, unique human.",
+    "Uses AgentKit in a meaningful way.",
+    "Shows a working app.",
+    "Registers or resolves agents through AgentBook where relevant.",
+    "Uses the World ID Sandbox App to test the project remotely.",
+    "Includes a feedback document on AgentKit docs and integration flow; Developer Portal navigation, search, product discovery, and debugging guidance; Sandbox App states, proof flows, test users, errors, and edge cases; and what was confusing, missing, broken, or hard to test."
+   ],
+   "sponsor_tech": [
+    "AgentKit",
+    "AgentBook",
+    "World ID",
+    "World ID Sandbox App"
+   ]
+  },
+  {
+   "name": "Selfie Check",
+   "sponsor": "World",
+   "prize_usd": 3500,
+   "prize_text": "Up to 3 teams will receive $1,166",
+   "requirements": [
+    "Build and demo a realistic Selfie Check flow that validates where a low-friction, low-assurance biometric credential is useful for risk, eligibility, fairness, continuity, or abuse prevention.",
+    "Uses Selfie Check or a Selfie Check-compatible World ID credential flow in a meaningful way.",
+    "Treats Selfie Check as a risk, eligibility, fairness, continuity, or abuse-prevention signal.",
+    "Shows a working app.",
+    "Includes a feedback document on SelfieCheck docs and integration flow; Developer Portal navigation, search, product discovery, and debugging guidance; Sandbox App states, proof flows, test users, errors, and edge cases; and what was confusing, missing, broken, or hard to test."
+   ],
+   "sponsor_tech": [
+    "Selfie Check",
+    "World ID",
+    "World ID Sandbox App"
+   ]
+  },
+  {
+   "name": "Build an Aqua App",
+   "sponsor": "1inch",
+   "prize_usd": 5000,
+   "prize_text": "1st place $2,500; 2nd place $1,500; 3rd place $1,000",
+   "requirements": [
+    "Create a custom Aqua app that implements a sophisticated DeFi position. If SwapVM is used, SwapVM opcodes may be modified and custom instructions defined.",
+    "Final positions must be demonstrated through test scripts or a UI.",
+    "Official Aqua/SwapVM contracts must be used (redeployments of a modified SwapVM contract are allowed).",
+    "Onchain execution of token transfers should be presented during the final demo (local forks are ok).",
+    "Proper Git commit history (no single-commit entries on the final day)."
+   ],
+   "sponsor_tech": [
+    "Aqua",
+    "SwapVM",
+    "Aqua SDK"
+   ]
+  },
+  {
+   "name": "Build an Aqua App - Continuity Track",
+   "sponsor": "1inch",
+   "prize_usd": 2000,
+   "prize_text": "1st place $1,500; 2nd place $500",
+   "requirements": [
+    "This prize is only available to Continuity Track participants.",
+    "Create a custom Aqua app that implements a sophisticated DeFi position. If SwapVM is used, SwapVM opcodes may be modified and custom instructions defined.",
+    "Final positions must be demonstrated through test scripts or a UI.",
+    "Official Aqua/SwapVM contracts must be used (redeployments of a modified SwapVM contract are allowed).",
+    "Onchain execution of token transfers should be presented during the final demo (local forks are ok).",
+    "Proper Git commit history (no single-commit entries on the final day)."
+   ],
+   "sponsor_tech": [
+    "Aqua",
+    "SwapVM",
+    "Aqua SDK"
+   ]
+  },
+  {
+   "name": "Best Use of ENSv2",
+   "sponsor": "ENS",
+   "prize_usd": 4500,
+   "prize_text": "1st place $1,500; 2nd place $1,500; 3rd place $1,000; Runner-Up $500",
+   "requirements": [
+    "Project must be built on ENSv2 (Sepolia). ENSv2 features should be central to the product, not a cosmetic add-on.",
+    "Explore the hierarchical registry: wildcard resolution off a parent resolver, a custom subname registry, Enhanced Access Control, Permissioned Resolvers, record aliasing, and/or namespace aliasing.",
+    "Demo must be functional and not just include hard-coded values.",
+    "Project showcase must have a video recording or a link to a live demo (ideally both).",
+    "Code must be open source and accessible on Github or a similar platform."
+   ],
+   "sponsor_tech": [
+    "ENSv2",
+    "Permissioned Registry",
+    "Permissioned Resolver",
+    "Enhanced Access Control"
+   ]
+  },
+  {
+   "name": "Best Integration of ENSv2 into an Existing Project",
+   "sponsor": "ENS",
+   "prize_usd": 500,
+   "prize_text": "$500",
+   "requirements": [
+    "This prize is only available to Continuity Track participants.",
+    "Integrate ENSv2 into an existing protocol or project (yours or an open one) on its testnet deployment.",
+    "Integration must use ENSv2 on Sepolia. It should be clear how ENSv2 improves the project, not just a cosmetic add-on.",
+    "Demo must be functional and not just include hard-coded values.",
+    "Project showcase must have a video recording or a link to a live demo (ideally both).",
+    "Code must be open source and accessible on Github or a similar platform."
+   ],
+   "sponsor_tech": [
+    "ENSv2",
+    "Enhanced Access Control",
+    "Permissioned Resolvers"
+   ]
+  },
+  {
+   "name": "Best Uniswap Stack Contribution",
+   "sponsor": "Uniswap Foundation",
+   "prize_usd": 3000,
+   "prize_text": "Up to 3 teams will receive $1,000",
+   "requirements": [
+    "Build on or integrate any part of the Uniswap stack, including the Uniswap API, the Uniswap AMM (v2, v3, or v4), CCA, or any other Uniswap protocol. Includes new v4 hooks, extensions or improvements to official Uniswap repositories, and tooling or solutions for the broader ecosystem.",
+    "A public GitHub repository with open-source code, a FEEDBACK.md file, and a completed submission to the Uniswap Developer Feedback Form (https://developers.uniswap.org/hackathon-feedback) that includes the link to the FEEDBACK.md file.",
+    "README must clearly point to the relevant contracts and lines of code so the integration can be verified.",
+    "Submissions without the feedback form will be reviewed and audited before winners are finalized."
+   ],
+   "sponsor_tech": [
+    "Uniswap API",
+    "Uniswap AMM v2",
+    "Uniswap AMM v3",
+    "Uniswap AMM v4",
+    "CCA",
+    "v4 hooks"
+   ]
+  },
+  {
+   "name": "Best Uniswap Stack Contribution",
+   "sponsor": "Uniswap Foundation",
+   "prize_usd": 2000,
+   "prize_text": "1st place $1,000; 2nd place $1,000",
+   "requirements": [
+    "This prize is only available to Continuity Track participants.",
+    "Build on or integrate any part of the Uniswap stack, including the Uniswap API, the Uniswap AMM (v2, v3, or v4), CCA, or any other Uniswap protocol. Includes new v4 hooks, extensions or improvements to official Uniswap repositories, and tooling or solutions for the broader ecosystem.",
+    "A public GitHub repository with open-source code, a FEEDBACK.md file, and a completed submission to the Uniswap Developer Feedback Form (https://developers.uniswap.org/hackathon-feedback) that includes the link to the FEEDBACK.md file.",
+    "README must clearly point to the relevant contracts and lines of code so the integration can be verified.",
+    "Submissions without the feedback form will be reviewed and audited before winners are finalized."
+   ],
+   "sponsor_tech": [
+    "Uniswap API",
+    "Uniswap AMM v2",
+    "Uniswap AMM v3",
+    "Uniswap AMM v4",
+    "CCA",
+    "v4 hooks"
+   ]
+  },
+  {
+   "name": "AI Agents x Ledger",
+   "sponsor": "Ledger",
+   "prize_usd": 3500,
+   "prize_text": "1st place $2,000; 2nd place $1,000; 3rd place $500",
+   "requirements": [
+    "Start something new during the event. Device-backed security must be central: agents that hold secrets they cannot leak, agents that pay for what they use, systems that ask for a human before anything irreversible, or products that make autonomous behavior safer instead of bypassing user intent.",
+    "Agents that use secrets they cannot leak (a broker hands out scoped capabilities, never the API key) and bringing the Key Ring to hosts with no USB port (enroll a VPS, a CI runner, or a hosted agent) must both be built on the Ledger Agent Stack, and in particular on the Ledger Key Ring CLI (wallet-cli ring).",
+    "Also sought: agents that pay for APIs, tools, or services with Ledger-secured payment flows, including x402-style patterns, and human-in-the-loop agents where Ledger approves high-risk actions before funds move or permissions escalate."
+   ],
+   "sponsor_tech": [
+    "Ledger Agent Stack",
+    "Ledger Key Ring CLI",
+    "wallet-cli ring",
+    "x402"
+   ]
+  },
+  {
+   "name": "Extend to Ledger",
+   "sponsor": "Ledger",
+   "prize_usd": 1500,
+   "prize_text": "1st place $1,000; 2nd place $500",
+   "requirements": [
+    "This prize is only available to Continuity Track participants.",
+    "For teams extending a project they already had before the event. Show what the Ledger Agent Stack adds to something real.",
+    "Example directions stated in the brief: add a Ledger signer to an already shipped app using the DMK skills; make wallet-cli ring the key backend for existing .env, sops, or age files; put a device confirmation in front of an action the product already performs; or pick up an open issue on a Ledger repository and land it as a real fix."
+   ],
+   "sponsor_tech": [
+    "Ledger Agent Stack",
+    "DMK skills",
+    "wallet-cli ring"
+   ]
+  },
+  {
+   "name": "Best B2B financial product",
+   "sponsor": "Privy",
+   "prize_usd": 2500,
+   "prize_text": "$2,500",
+   "requirements": [
+    "Build a product that helps businesses manage digital assets and financial operations with Privy, such as treasury platforms, business accounts, payroll, spend management, payment operations, or shared organization wallets.",
+    "Integrate Privy as a core part of the product.",
+    "Create or use at least one Privy wallet.",
+    "Demonstrate a business or organization use case.",
+    "Implement at least one functional B2B workflow, such as a payment, approval, treasury operation, or wallet administration flow.",
+    "Use at least one Privy control, such as policies, signers, key quorums, or intents.",
+    "Provide a working demo and access to the project's source code.",
+    "Clearly explain how Privy enables the product."
+   ],
+   "sponsor_tech": [
+    "Privy",
+    "Privy wallets",
+    "policies",
+    "signers",
+    "key quorums",
+    "intents"
+   ]
+  },
+  {
+   "name": "Best financial flow",
+   "sponsor": "Privy",
+   "prize_usd": 2500,
+   "prize_text": "$2,500",
+   "requirements": [
+    "Build a seamless experience for funding, moving, trading, growing, or spending digital assets with Privy.",
+    "Integrate Privy as a core part of the product.",
+    "Create or use at least one Privy wallet.",
+    "Complete at least one functional financial flow using a generally available Privy feature. Eligible flows include transfers, bridging, stablecoin conversions, swaps, self-service Earn vaults, onramps, or other supported wallet actions.",
+    "Provide a working demo and access to the project's source code.",
+    "Clearly explain how Privy improves the user experience.",
+    "Features requiring commercial or guided onboarding may be mocked, but they do not count as the required functional Privy integration.",
+    "Privy Cards currently requires guided Privy and Bridge onboarding; a mocked card experience is allowed only if another live Privy flow is included for eligibility."
+   ],
+   "sponsor_tech": [
+    "Privy",
+    "Privy wallets",
+    "Privy wallet actions",
+    "Earn vaults"
+   ]
+  },
+  {
+   "name": "Best Confidential Workflow",
+   "sponsor": "Chainlink",
+   "prize_usd": 2000,
+   "prize_text": "Up to 2 teams will receive $1,000",
+   "requirements": [
+    "Build a privacy-preserving Web3 application with Chainlink Runtime Environment (CRE) Confidential Workflows.",
+    "Build a CRE Workflow that uses Confidential Workflows to execute a meaningful part of the application.",
+    "The workflow must register and use a confidential TEE handler, such as handlerInTee in TypeScript or cre.HandlerInTee in Go.",
+    "The confidential portion must process at least one sensitive input, secret, confidential API response, private parameter, or intermediate value inside the enclave.",
+    "The Confidential Workflow must be meaningfully integrated into the project's core functionality. A placeholder handler or isolated example does not qualify.",
+    "Demonstrate a successful execution through a Confidential Workflow simulation using the CRE CLI or a live deployment on the CRE network.",
+    "Provide evidence of the successful simulation or deployment, such as a demo video, terminal output, execution logs, or deployment details."
+   ],
+   "sponsor_tech": [
+    "Chainlink Runtime Environment",
+    "Confidential Workflows",
+    "CRE CLI",
+    "TEE"
+   ]
+  },
+  {
+   "name": "Best Chainlink-Powered Upgrade",
+   "sponsor": "Chainlink",
+   "prize_usd": 500,
+   "prize_text": "$500",
+   "requirements": [
+    "This prize is only available to Continuity Track participants.",
+    "Build a meaningful upgrade to an existing project, protocol, or infrastructure using Chainlink technology.",
+    "Integrate at least one Chainlink service directly within smart contract logic or onchain workflows.",
+    "The Chainlink integration must contribute to a state change on a blockchain. Simply displaying Chainlink data in a frontend is not sufficient.",
+    "The submission must clearly demonstrate how the Chainlink-powered upgrade improves the existing project.",
+    "Use CRE instead of Chainlink Functions or Automation. Functions and Automation are being deprecated.",
+    "Eligible technologies: CRE including Confidential Workflows, Price Feeds, Data Streams, Proof of Reserve, and VRF."
+   ],
+   "sponsor_tech": [
+    "CRE",
+    "Confidential Workflows",
+    "Price Feeds",
+    "Data Streams",
+    "Proof of Reserve",
+    "VRF",
+    "Chainlink Developer Skills"
+   ]
+  },
+  {
+   "name": "Automated Liquidation Protection Challenge",
+   "sponsor": "Chainlink",
+   "prize_usd": 500,
+   "prize_text": "$500",
+   "requirements": [
+    "Build a Confidential Workflow that protects a virtual ETH-collateral/USDC-debt position during simulated market movements.",
+    "The workflow must avoid liquidation, preserve the benefit of keeping the loan open, use emergency capital efficiently, and keep sensitive protection rules and credentials private.",
+    "Until the hackathon submission deadline, update the workflow to join the official challenge using join() on the Ethereum Sepolia challenge contract 0x88574e7Cc0027afd04951daa09B64d4441931ba1, from Sept 9 to the hackathon submission deadline.",
+    "You cannot update the workflow after the hackathon submission deadline.",
+    "After the deadline, the Chainlink team will run the scenarios during the next 24h and discover the winner."
+   ],
+   "sponsor_tech": [
+    "Confidential Workflows",
+    "CRE"
+   ]
+  },
+  {
+   "name": "Help an Agent Use Your Hackathon Project",
+   "sponsor": "Bazantic",
+   "prize_usd": 1000,
+   "prize_text": "Up to 2 teams will receive $500",
+   "requirements": [
+    "This prize is only available to Continuity Track participants.",
+    "Show an agent can use the project without the builder explaining it, using a Bazantic-built MCP server and recipe.",
+    "Create an account on bazantic.com.",
+    "Create an x402/MPP Gateway in Bazantic for the project.",
+    "Create a Recipe that explains when, why, and how to use the service.",
+    "Use the same prompt, model, settings, and API access in both tests. Make the Recipe the only material difference between a raw-API test and a Recipe test.",
+    "Show both results and identify the improvement by sharing the inputs and results in the submission.",
+    "Record a video walking through the difference in outcomes.",
+    "Provide the Bazantic account username (email or GitHub handle) so the recipe can be attributed."
+   ],
+   "sponsor_tech": [
+    "Bazantic",
+    "x402/MPP Gateway",
+    "MCP",
+    "Recipes"
+   ]
+  },
+  {
+   "name": "Best Recipe that uses EthGlobal Hackathon Sponsor APIs",
+   "sponsor": "Bazantic",
+   "prize_usd": 1000,
+   "prize_text": "1st place $500; 2nd place $300; 3rd place $200",
+   "requirements": [
+    "Create a set of recipes that use multiple APIs the project utilizes, forming a repeatable workflow that moves from one service to the next and completes a task neither could solve alone.",
+    "Create an account on bazantic.com.",
+    "Create an x402/MPP Gateway in Bazantic for the project.",
+    "Use at least one other service already available through Bazantic OR available from a sponsor of the EthGlobal Online Hackathon.",
+    "Create a recipe that uses both services in one working flow.",
+    "Make the final result depend meaningfully on both services.",
+    "Demonstrate the completed task from start to finish in a screen recording that is part of the submission.",
+    "Provide the Bazantic account username (email or GitHub handle)."
+   ],
+   "sponsor_tech": [
+    "Bazantic",
+    "x402/MPP Gateway",
+    "Recipes"
+   ]
+  },
+  {
+   "name": "Agentify a new API",
+   "sponsor": "Bazantic",
+   "prize_usd": 1000,
+   "prize_text": "1st place $500; 2nd place $300; 3rd place $200",
+   "requirements": [
+    "Add a new API into Bazantic and create a recipe, connected with the hackathon project, demonstrating something agents could not do before.",
+    "Create an account on bazantic.com.",
+    "Create an x402/MPP Gateway in Bazantic for the project.",
+    "Add a service that was not available through Bazantic AND is not an API available via the other sponsors when the event began.",
+    "Create a working Gateway for that service on Bazantic.",
+    "Create a recipe that uses both services in one working flow within the hackathon project.",
+    "Explain how other builders and agents could use the new service by demonstrating what the recipe does in a screen recording.",
+    "Provide the Bazantic account username (email or GitHub handle)."
+   ],
+   "sponsor_tech": [
+    "Bazantic",
+    "x402/MPP Gateway",
+    "Recipes",
+    "MCP"
+   ]
+  }
+ ],
+ "judging_criteria": [
+  {
+   "name": "1inch SwapVM utilization",
+   "weight": null,
+   "description": "On both Aqua tracks, projects that utilize SwapVM will be scored higher during final judging."
+  },
+  {
+   "name": "ENS AI agent bonus",
+   "weight": null,
+   "description": "Best Use of ENSv2: bonus points for bringing AI agents into the mix, such as agents as namespaces with their own identity and permissions. The integration track also says it pairs well with AI agent identity."
+  },
+  {
+   "name": "Hedera agentic payments extra points",
+   "weight": null,
+   "description": "Extra points for pay-per-call inference, data, or compute metering rather than a flat per-request charge; multi-agent negotiation and settlement via A2A or ACP; on-chain agent identity using ERC-8004 or HCS-14; agent discovery via UCP or a directory; HTS tokens or custom fee schedules; verifiable payment audit trails on HCS; recurring or streamed payments using Scheduled Transactions."
+  },
+  {
+   "name": "Hedera Harness extra points",
+   "weight": null,
+   "description": "Extra points for new service coverage, better ergonomics, or fewer lines of code to a working transaction; tests, documentation, or examples; a harness targeting a language or framework the current one does not cover; clear before-and-after evidence of a developer-experience gain."
+  },
+  {
+   "name": "Hedera tokenization extra points",
+   "weight": null,
+   "description": "Real asset classes and real lifecycle management are favoured over a token with a name on it. Extra points for a secondary market for ATS-issued assets, compliance controls (KYC grants, freezes, transfer restrictions, pauses), custom fee schedules, coupon or dividend distributions, royalty flows, oracle integration for pricing or NAV, Scheduled Transactions for vesting, coupons, or maturity, and contributions upstream to ATS."
+  },
+  {
+   "name": "Built on Hedera extra points",
+   "weight": null,
+   "description": "Extra points for evidence of real users, traction, or deployment beyond the demo; newly integrated Hedera services that were not in the original build; and a clear roadmap for what comes after the hackathon."
+  },
+  {
+   "name": "Arc DeFi what they are looking for",
+   "weight": null,
+   "description": "Meaningful use of Arc and USDC; advanced programmable money flows such as conditional payments, onchain automation, or multi-step settlement; payment, liquidity, or treasury workflows using App Kits where relevant; applications that show why stablecoin-native infrastructure changes what is possible."
+  },
+  {
+   "name": "Arc agentic what they are looking for",
+   "weight": null,
+   "description": "Agents with clear decision logic tied to real signals; autonomous spending, payments, or settlement flows using USDC; use of Agent Stack to connect agents to wallets, USDC payments, and onchain actions; use of Nanopayments, Paymaster, or App Kits where relevant for agent-to-agent or service payments."
+  },
+  {
+   "name": "Chainlink liquidation challenge outcome",
+   "weight": null,
+   "description": "After the submission deadline, the Chainlink team runs scenarios for the next 24 hours and discovers the winner. The workflow must avoid liquidation, preserve the benefit of keeping the loan open, use emergency capital efficiently, and keep sensitive protection rules and credentials private. No numeric weights are stated."
+  }
+ ],
+ "required_chains": [
+  "Hedera",
+  "Hedera testnet",
+  "Hedera mainnet",
+  "Arc",
+  "Arc Mainnet",
+  "Sepolia",
+  "Ethereum",
+  "Ethereum Sepolia",
+  "Unichain"
+ ],
+ "required_sdks": [
+  "Subgraphs",
+  "Substreams",
+  "Subgraph MCP",
+  "Subgraph Studio",
+  "The Graph Market",
+  "Substreams SKILLs",
+  "x402",
+  "Blocky402",
+  "Hedera Agent Kit",
+  "Hedera Harness",
+  "Asset Tokenization Studio",
+  "USDC",
+  "Circle Agent Stack",
+  "App Kits",
+  "Circle Wallets",
+  "CCTP",
+  "Gateway",
+  "StableFX",
+  "Nanopayments",
+  "Paymaster",
+  "AgentKit",
+  "AgentBook",
+  "World ID",
+  "Selfie Check",
+  "Aqua",
+  "SwapVM",
+  "Aqua SDK",
+  "ENSv2",
+  "Uniswap API",
+  "Uniswap v4",
+  "Ledger Agent Stack",
+  "Ledger Key Ring CLI",
+  "Privy",
+  "Chainlink CRE",
+  "Confidential Workflows",
+  "Bazantic",
+  "MCP"
+ ],
+ "deliverables": [
+  {
+   "name": "Public repository",
+   "required": true,
+   "notes": "Public repo required by The Graph (both tracks), Hedera tracks, 1inch (with proper commit history), ENS (open source on Github or similar), Uniswap, and Privy (source-code access). Arc accepts a GitHub or Replit link. Hedera Harness accepts a public repo or an open PR link."
+  },
+  {
+   "name": "Demo video",
+   "required": true,
+   "notes": "The Graph: two to four minutes. Hedera tracks: five minutes or less. Arc: video demonstration plus presentation. ENS: video recording or live demo, ideally both. Chainlink Confidential Workflows: evidence may be a demo video, terminal output, logs, or deployment details. Bazantic: video of the outcome difference, or a screen recording of the completed task. Ledger does not state a video requirement in this brief."
+  },
+  {
+   "name": "README or SKILL.md",
+   "required": true,
+   "notes": "The Graph AI tracks require a clear README or SKILL.md so judges can run the project. Hedera tracks require a README covering setup, architecture, and the relevant flow, or a PR description for harness contributions. Uniswap README must point to relevant contracts and lines of code."
+  },
+  {
+   "name": "Architecture diagram",
+   "required": true,
+   "notes": "Required for all three Arc tracks, with a working frontend and backend."
+  },
+  {
+   "name": "Working frontend and backend",
+   "required": true,
+   "notes": "Required for Arc Functional MVP submissions."
+  },
+  {
+   "name": "FEEDBACK.md and Uniswap Developer Feedback Form",
+   "required": true,
+   "notes": "Required for both Uniswap Foundation tracks. Form: https://developers.uniswap.org/hackathon-feedback. The form submission must include the link to FEEDBACK.md."
+  },
+  {
+   "name": "World feedback document",
+   "required": true,
+   "notes": "Required for AgentKit Continuity and Selfie Check, covering docs and integration flow, Developer Portal, Sandbox App states and edge cases, and what was confusing, missing, broken, or hard to test."
+  },
+  {
+   "name": "HashScan-verified contracts",
+   "required": true,
+   "notes": "Hedera Tokenization of Anything: contracts verified on HashScan where applicable."
+  },
+  {
+   "name": "Continuity before/after documentation",
+   "required": true,
+   "notes": "Continuity pools require documenting pre-existing work. Hedera Built on Hedera asks the README to separate what existed before from what is new, ideally with commit history or a diff. The Graph Continuity pool judges only work done during the event."
+  },
+  {
+   "name": "CRE execution evidence",
+   "required": true,
+   "notes": "Best Confidential Workflow requires evidence of a successful CRE CLI simulation or live CRE network deployment."
+  },
+  {
+   "name": "Chainlink challenge join",
+   "required": true,
+   "notes": "Automated Liquidation Protection Challenge requires calling join() on Ethereum Sepolia contract 0x88574e7Cc0027afd04951daa09B64d4441931ba1 from Sept 9 until the submission deadline."
+  },
+  {
+   "name": "Bazantic account username",
+   "required": true,
+   "notes": "All three Bazantic tracks require the bazantic.com account username, email or GitHub handle, so the recipe can be attributed."
+  },
+  {
+   "name": "Onchain token-transfer demo",
+   "required": true,
+   "notes": "Both 1inch Aqua tracks require onchain execution of token transfers during the final demo. Local forks are ok. Positions must be shown via test scripts or a UI."
+  }
+ ],
+ "rules": [
+  "Prizes marked only for Continuity Track participants are: The Graph AI Continuity, Hedera Built on Hedera, Arc Best DeFi or Agentic Application, World AgentKit Continuity, 1inch Build an Aqua App - Continuity Track, ENS Best Integration of ENSv2 into an Existing Project, the $2,000 Uniswap Foundation Best Uniswap Stack Contribution, Ledger Extend to Ledger, Chainlink Best Chainlink-Powered Upgrade, and Bazantic Help an Agent Use Your Hackathon Project.",
+  "The Graph AI prize is judged in two pools. Start Fresh: projects begun and built during the hackathon; open-source starter kits are fine; project-specific prior code is not. Continuity: extend an existing open-source repo or ship a new feature on an existing product; document pre-existing work; only work done during the event is judged.",
+  "Where the brief says to follow a pool's ETHGlobal rules, those rules are not restated in this prize page.",
+  "Mocked, local-only, or static datasets do not qualify for The Graph prizes. Live data from a Graph provider is required.",
+  "Simply querying one Subgraph with no composition or standardization does not qualify for the composable/standardized Graph prize.",
+  "Hedera Built on Hedera: the project must already exist on Hedera or have been built for a previous hackathon. Polish and bug fixes alone do not qualify.",
+  "Arc: part of each prize is awarded only if the same project is deployed to Arc Mainnet by September 30 ($2,500 of $3,500 on the two non-continuity tracks; $2,000 of $3,000 on the Continuity track). Submissions must state which Arc bounty they are for.",
+  "ENSv2 prizes require ENSv2 on Sepolia, a functional demo that is not hard-coded values, and open-source code. The integration prize must target an existing project's testnet deployment.",
+  "1inch: official Aqua/SwapVM contracts must be used; redeployments of a modified SwapVM contract are allowed. Proper Git commit history is required; single-commit entries on the final day do not qualify.",
+  "Uniswap submissions without FEEDBACK.md and a completed Uniswap Developer Feedback Form will be reviewed and audited before winners are finalized.",
+  "Privy features requiring commercial or guided onboarding may be mocked, but they do not count as the required functional Privy integration. A mocked Privy Cards experience is allowed only with another live Privy flow.",
+  "Chainlink Functions and Automation are being deprecated. Projects needing that functionality should implement it using CRE.",
+  "Chainlink liquidation-protection workflows cannot be updated after the hackathon submission deadline. The Chainlink team runs scenarios during the following 24 hours.",
+  "Bazantic Agentify a new API: the added service must not already be available through Bazantic and must not be an API available via the other sponsors when the event began.",
+  "No overall eligibility rules, team-size limits, or a calendar date for the hackathon submission deadline are stated on this prize page."
+ ],
+ "grant": null,
+ "keywords": [
+  "subgraphs",
+  "substreams",
+  "MCP",
+  "x402",
+  "agentic payments",
+  "USDC",
+  "stablecoin DeFi",
+  "ENSv2",
+  "confidential workflows",
+  "TEE",
+  "asset tokenization",
+  "Aqua",
+  "SwapVM",
+  "World ID",
+  "AgentKit",
+  "Chainlink CRE",
+  "embedded wallets",
+  "Uniswap v4 hooks",
+  "HTS",
+  "ERC-8004"
+ ],
+ "sources": [
+  "https://ethglobal.com/events/ethonline2026/prizes"
+ ]
+}

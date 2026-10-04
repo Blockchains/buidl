@@ -1,0 +1,37 @@
+name: Brief
+description: Turn a hackathon, bounty or grant brief into a working product repo (contracts + live app + submission pack).
+title: "Brief: "
+labels: ["brief"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Opening this issue runs the **Brief to product** workflow (only for the repo owner/collaborators). Results are posted back here.
+        Give a URL whose text is visible without login (ETHGlobal /prizes pages, Devpost, DoraHacks, Gitcoin, grant pages), or paste the brief.
+  - type: input
+    id: brief_url
+    attributes:
+      label: Brief URL(s)
+      description: One or more URLs separated by spaces.
+      placeholder: https://ethglobal.com/events/ethonline2026/prizes
+  - type: textarea
+    id: brief_text
+    attributes:
+      label: Pasted brief
+      description: Optional. Paste the brief (tracks, prizes, judging criteria, rules, deadlines). Combined with the URL if both are given.
+  - type: input
+    id: name
+    attributes:
+      label: Repo name
+      description: Optional kebab-case name for the generated repo. Leave empty to let the planner choose.
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Publish mode
+      options:
+        - auto
+        - create
+        - branch
+        - none
+      default: 0
+      description: auto = new repo if FORGE_TOKEN is set, otherwise a sandbox branch + Pages in this repo.

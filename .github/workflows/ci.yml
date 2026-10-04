@@ -1,0 +1,67 @@
+name: CI
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["runs/**"]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 -m unittest discover -s tests -v
+  template-e2e:
+    name: template e2e (example brief -> product, no Grok)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        example: [ethonline2026, optimism-season9]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: foundry-rs/foundry-toolchain@v1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: generate + local CI (forge build/test, web test/build, deck)
+        run: |
+          python3 -m buidl run --requirements examples/${{ matrix.example }}/requirements.json --plan examples/${{ matrix.example }}/plan.json \
+            --mode none --no-grok --out /tmp/out --result result.json
+          python3 -c "import json;r=json.load(open('result.json'));print(json.dumps({k:r.get(k) for k in ('status','slug','error')}));assert r['status']=='success'"
+  grok-live:
+    name: live Grok smoke (parse a real brief)
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
+    env:
+      XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          [ -n "$XAI_API_KEY" ] || { echo "::warning::XAI_API_KEY not set - skipped"; exit 0; }
+          python3 - <<'PY'
+          from buidl import brief, grok
+          req = brief.parse(brief.load(None, open("examples/optimism-season9/brief.txt").read()))
+          assert req.get("kind") and req.get("program"), req
+          print(req["program"], req["kind"], len(req.get("deliverables", [])), "deliverables;", grok.USAGE.summary()["usd"], "USD")
+          PY
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: |
+          curl -sSfL https://github.com/gitleaks/gitleaks/releases/download/v8.21.2/gitleaks_8.21.2_linux_x64.tar.gz | tar xz gitleaks
+          ./gitleaks detect --source . --no-banner --redact

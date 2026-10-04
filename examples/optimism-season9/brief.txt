@@ -1,0 +1,214 @@
+=== SOURCE https://gov.optimism.io/t/season-9-grants-council-applications-now-open/10599 ===
+Season 9 Grants Council: Applications Now Open - Grants 🔴 - Optimism Collective
+ Optimism Collective
+ Season 9 Grants Council: Applications Now Open
+ Grants 🔴
+ Gonna.eth
+ February 12, 2026, 3:49pm
+ 1
+The Grants Council looks for projects that grow Superchain adoption by increasing DEX liquidity in priority pairs and the fees generated from trading those pairs.
+Apply for a Grant →
+Our Objective
+Projects must target one of the following metrics:
+DEX TVL in Priority Pairs (Liquidity)#
+Why it matters: Deep liquidity in priority pairs reduces slippage, improves execution, and unlocks more onchain activity across the Superchain.
+Formula: ΔPairTVL = AvgPairTVL_end − AvgPairTVL_start
+DEX Fees in Priority Pairs
+Why it matters: Fees measure real trading demand and willingness to pay to use Superchain venues for swaps.
+Formula: ΔPairFees = PairFees_end − PairFees_start
+Examples of eligible projects:
+Incentive programs that increase and retain liquidity in priority pairs
+Vaults, strategies, or automation that improve depth for priority pairs (example: concentrated liquidity management)
+Routing, aggregation, or UX that increases volume and fees in priority-pair pools
+Integrations that move existing liquidity into eligible priority pools and keep it there
+Tooling that tracks, monitors, or improves priority-pair TVL and fee performance
+Priority Liquidity Pairs here →
+Key Dates
+Applications Open: Feb 11th 2026
+Submissions Closes: May 20th 2026
+Estimated timeframe of Grant Review (15 Business days total):
+Submission Intake – 5 days
+GovNERDs Buffer – 1 day
+Ops Sync – 1 day
+Final Review – 5 days
+Final Decision + Buffer – 2 days
+Ops Wrap-up – 1 day
+Need help? Join our Telegram group and ask away!
+ 7 Likes
+ Related topics
+Topic
+Replies
+Views
+Activity
+ Season 7: Grants Are Now Open!
+ Grant Updates
+ season-7
+ 0
+ 415
+ February 7, 2025
+ Season 9 Governance Fund Missions
+ Grants 🔴
+ season-9
+ 4
+ 999
+ March 23, 2026
+ Season 7: Governance Fund Missions
+ Governance Fund Missions
+ season-7
+ 6
+ 2080
+ January 24, 2025
+ [Mission Request]: Intent #3B: Support the Superchain
+ Governance Fund Missions
+ season-6
+ 6
+ 2130
+ August 16, 2024
+ Grant Application: superchain-guard
+ Grants Updates
+ season-8
+ , 
+ season-9
+ 6
+ 213
+ May 19, 2026
+ Home 
+ Categories 
+ Guidelines 
+ Terms of Service 
+ Privacy Policy 
+Powered by Discourse, best viewed with JavaScript enabled
+
+=== SOURCE https://gov.optimism.io/t/season-9-governance-fund-missions/10526 ===
+Season 9 Governance Fund Missions - Grants 🔴 - Optimism Collective
+ Optimism Collective
+ Season 9 Governance Fund Missions
+ Grants 🔴
+ season-9
+ system
+ January 7, 2026, 9:30pm
+ 1
+Governance Fund Missions
+Grants Council Mission
+Expected impact on the Intent:
+The Grants Council makes grants, on behalf of the Token House. In Season 9, the Grants Council will work towards the below success metrics.
+ Primary: DEX TVL for collateral-borrow pairs that exist on lending markets (e.g., Morpho, Aave, etc.)
+Purpose: Growing TVL in strategically relevant DEX pools helps foster a healthy DeFi ecosystem
+Requirement: Both assets in a given liquidity pair need to be available on lending markets (e.g., WETH/USDC DEX pool → WETH is the collateral asset and USDC is the borrowed asset on Morpho)
+Note: We will link to a sheet that we’ll update on an ongoing basis, which will show the highest-priority liquidity pairs 
+ Secondary: DEX trading volume per TVL for collateral-borrow that exist on lending markets
+Purpose: Trading volume per TVL measures demand-side activity for a liquidity pool and therefore serves as a reliable proxy for healthy ecosystem dynamics 
+Total budget: 3.89M OP from the Governance Fund, as proposed by Budget Board here Please note this budget was ~6.29M OP in Season 8
+Eligibility: The Foundation recommends that all incentive programs for Season 9 be available to any chain in the Superchain who is contributing revenue back to the Collective. This corresponds to the any chain in the Superchain Index. Projects are eligible who have deployed their own contracts on eligible OP Chains. Additional criteria may be determined by the Grants Council.
+Selection Algorithm: It is at the discretion of the Grants Council to determine their own selection algorithm. Selection algorithms (which have taken the form of public rubrics in the past), must be made public on the forum before the first round of selection takes place.
+Evaluation Algorithm: Projects selected by the Grants Council will be assessed, based on their ability to generate contribution towards the success metrics defined above, by OP Labs or Open Source Observer on the measurement date.
+Measured Outcomes:
+ Primary: DEX TVL for collateral-borrow pairs that exist on lending markets (e.g., Morpho, Aave, etc.)
+Purpose: Growing TVL in strategically relevant DEX pools helps foster a healthy DeFi ecosystem
+Requirement: Both assets in a given liquidity pair need to be available on lending markets (e.g., WETH/USDC DEX pool → WETH is the collateral asset and USDC is the borrowed asset on Morpho)
+Note: We will link to a sheet that we’ll update on an ongoing basis, which will show the highest-priority liquidity pairs 
+ Secondary: DEX trading volume per TVL for collateral-borrow that exist on lending markets
+Purpose: Trading volume per TVL measures demand-side activity for a liquidity pool and therefore serves as a reliable proxy for healthy ecosystem dynamics 
+Measurement Date:
+End of Season 9
+Strategic Rationale
+Proactive Grants are Needed to Incentive Growth: The Mission supposes that proactive grants are needed to incentivize growth in the above defined success metrics. Otherwise, these tokens could be allocated via other means.
+Grants Council Acts as an Extension of Growth Team: The Mission supposes that the Grants Council is an effective means of distributing user incentive grants. The Collective could, alternatively, chose to distribute user incentives via third party growth campaigns or the Foundation’s growth team.
+Developer Advisory Board Mission
+Expected impact on the Intent:
+The Developer Advisory Board will make grants that drive developer adoption, either in the form of Audit grants or Mission Requests. These grants should make progress towards the below metrics:
+ Primary: DEX TVL for collateral-borrow pairs that exist on lending markets (e.g., Morpho, Aave, etc.)
+Purpose: Growing TVL in strategically relevant DEX pools helps foster a healthy DeFi ecosystem
+Requirement: Both assets in a given liquidity pair need to be available on lending markets (e.g., WETH/USDC DEX pool → WETH is the collateral asset and USDC is the borrowed asset on Morpho)
+Note: We will link to a sheet that we’ll update on an ongoing basis, which will show the highest-priority liquidity pairs 
+ Secondary: DEX trading volume per TVL for collateral-borrow that exist on lending markets
+Purpose: Trading volume per TVL measures demand-side activity for a liquidity pool and therefore serves as a reliable proxy for healthy ecosystem dynamics 
+Total budget: 0.98M OP from the Governance Fund, as proposed by Budget Board here
+Please note this is relative to 949k OP in Season 8
+Eligibility: The Foundation recommends that all incentive programs for Season 9 be available to any chain in the Superchain who is contributing revenue back to the Collective. This corresponds to the any chain in the Superchain Index. Projects are eligible who have deployed their own contracts on eligible OP Chains. Additional criteria may be determined by the Developer Advisory Board.
+Selection Algorithm: It is at the discretion of the Developer Advisory Board to determine their own selection algorithm. Selection algorithms (which have taken the form of public rubrics in the past), must be made public on the forum before the first round of selection takes place.
+Evaluation Algorithm: Projects selected by the Developer Advisory Board will be assessed, based on their ability to generate contribution towards the success metrics defined above, by OP Labs or Open Source Observer on the measurement date.
+Measured Outcomes:
+ Primary: DEX TVL for collateral-borrow pairs that exist on lending markets (e.g., Morpho, Aave, etc.)
+Purpose: Growing TVL in strategically relevant DEX pools helps foster a healthy DeFi ecosystem
+Requirement: Both assets in a given liquidity pair need to be available on lending markets (e.g., WETH/USDC DEX pool → WETH is the collateral asset and USDC is the borrowed asset on Morpho)
+Note: We will link to a sheet that we’ll update on an ongoing basis, which will show the highest-priority liquidity pairs 
+ Secondary: DEX trading volume per TVL for collateral-borrow that exist on lending markets
+Purpose: Trading volume per TVL measures demand-side activity for a liquidity pool and therefore serves as a reliable proxy for healthy ecosystem dynamics 
+Measurement Date:
+End of Season 9
+Strategic Rationale
+Proactive Grants are Needed to Incentive Growth: The Mission supposes that proactive grants are needed to incentivize growth in the above defined success metric. Otherwise, these tokens could be allocated retroactively or via other means.
+Developer Advisory Board has Unique Ability to Drive Developer Growth: The Mission supposes that the Developer Advisory Board is an effective means of distributing grants that result in developer growth. These grants include more technical aspects such as audits or previous Foundation Mission Requests: Open-Source Monitoring & Alerting & Cross-Chain Key Management for Safe
+ 3 Likes
+ Guide to Season 9
+ Season 9: Reflection Period Guide
+ S9 Grants Council Communication Thread
+ SEEDGov - Delegate Communication Thread
+ Maksone
+ January 14, 2026, 12:13pm
+ 4
+I would like to inquire about something. I have been trying to submit my project for a grant since November 2025! I wrote letters and sent forms, but no one responded. It’s already January 14, 2026, but my project still has the status Enrolled in Retro Funding: S7 Dev Tooling! Now I see that registration for season 9 is open, but I don’t qualify for early registration. Maybe there’s a glitch in the algorithms?
+ 1 Like
+ Gonna.eth
+ January 14, 2026, 2:47pm
+ 5
+Retro funding has been closed for the las 6 months and looks like they are pausing it for another year.
+Grants Council has nothing to do with Retro funding they are different initiatives. The Foundations runs Retro Finding, governance elects Grants Council.
+ 1 Like
+ Axia
+ January 28, 2026, 2:57pm
+ 6
+Axia supports the proposals to approve Season 9 mission funding for the Grants Council and the Developer Advisory Board.
+For the Grants Council, the proposed success metrics: (1) targeting DEX TVL for collateral-borrow pairs that exist on lending markets and (2) trading volume per TVL, are strong indicators for a healthy ecosystem. Furthermore, the budget reduction from 6.29M OP in Season 8 to 3.89M OP in Season 9 demonstrates responsible stewardship as Optimism matures.
+For the Developer Advisory Board, funding grants for audits and technical developer tooling is important to drive developer growth. Furthermore, tying DAB grants to the same success metrics as the Grants Council (DEX TVL for collateral-borrow pairs and trading volume per TVL) creates cohesion in the ecosystem.
+ MconnectDAO
+ March 23, 2026, 7:25am
+ 7
+A few observations on this proposal: 
+The Grants Council budget has been reduced from 6.29M OP in Season 8 to 3.89M OP in Season 9 a 38% cut. I didn’t find a clear explanation for this reduction in the proposal. What drove this decision……..?
+Second the selection algorithm is described as being 'at the discretion of the Grants Council.'Discretion without pre-defined criteria creates accountability gaps. The proposal mentions rubrics will be made public before selection but who ensures this happens, and what happens if they aren’t?
+Third Morpho appears as a primary success metric here, while also being referenced in active governance discussions on Arbitrum and Aave. I’m not suggesting coordination, but it’s worth the community asking whether Morpho’s presence across multiple DAO grant frameworks reflects genuine ecosystem merit or something else.
+New to Optimism governance coming from Arbitrum and Aave research. Happy to be corrected if I’ve missed context….
+MconnectDAO Freelance Researcher | Based in India | Still learning but paying attention.
+Disclosure: I have no financial relationship with any protocol, candidate, or entity mentioned. I hold no governance tokens. I am an independent researcher. @system
+ Related topics
+Topic
+Replies
+Views
+Activity
+ S8 Governance Fund Missions
+ Governance Fund Missions
+ season-8
+ 11
+ 1181
+ September 9, 2025
+ Season 7: Governance Fund Missions
+ Governance Fund Missions
+ season-7
+ 6
+ 2080
+ January 24, 2025
+ Season 8 Intent
+ Intents
+ season-8
+ 20
+ 2140
+ August 12, 2025
+ Season 8 Growth Grants - TVL Impact Review
+ ✨ General
+ season-8
+ 2
+ 160
+ September 23, 2026
+ Grants Council Operating Budget S7
+ Renewal
+ 23
+ 1179
+ December 20, 2024
+ Home 
+ Categories 
+ Guidelines 
+ Terms of Service 
+ Privacy Policy 
+Powered by Discourse, best viewed with JavaScript enabled
